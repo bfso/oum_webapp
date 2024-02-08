@@ -13,7 +13,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')">
+                        {{ __('Bearbeiten') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')">
+                        {{ __('Verband') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('gameoperation')" :active="request()->routeIs('dashboard')">
+                        {{ __('Spielbetrieb') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -32,6 +41,7 @@
                             </div>
                         </button>
                     </x-slot>
+                    
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">

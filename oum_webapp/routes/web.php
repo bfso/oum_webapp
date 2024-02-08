@@ -22,6 +22,33 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+Route::get('/edit', function () {
+    return view('edit');
+})->middleware(['auth', 'verified'])->name('edit');
+
+
+Route::get('/association', function () {
+    return view('association');
+})->middleware(['auth', 'verified'])->name('association');
+
+
+Route::get('/gameoperation', function () {
+    return view('gameoperation');
+})->middleware(['auth', 'verified'])->name('gameoperation');
+
+Route::get('/history', function () {
+    return view('history');
+})->middleware(['auth', 'verified'])->name('history');
+
+Route::get('/referee', function () {
+    return view('referee');
+})->middleware(['auth', 'verified'])->name('referee');
+
+Route::get('/associationmember', function () {
+    return view('associationmember');
+})->middleware(['auth', 'verified'])->name('associationmember');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
