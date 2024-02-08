@@ -1,24 +1,27 @@
-<div class="row row--style-spare row--height-default row--vertical-align-center row--background-type-color row--width-contained row--logos-2a row--layout-logos-2a js-row" data-rowtype="logos-2a">
-    <div class="row--scroll-effect--container"></div>
-    <div class="row__container js-row-container">
-        <!-- Hier kommen deine Logos und Links hin -->
-    </div>
-</div>
+<link rel="stylesheet" href="app.css">
+<div class="bg-white sticky bottom-0 shadow" class="footer">
+    <div class="container mx-auto py-4 px-5">
+        <div class="row">
+            <!-- Große Bilder in der ersten Reihe -->
+            <div style="display: flex;">
+                <img src="{{ asset('img/conc.jpg') }}" class="img-fluid mr-20 "  alt="Bild 1">
+                <img src="{{ asset('img/mob.png') }}" class="img-fluid ml-20" alt="Bild 2">
+            </div>
 
-<div class="row row--style-accent row--height-thin row--vertical-align-center row--background-type-color row--width-medium row--footer-2 js-row" data-rowtype="footer-2">
-    <div class="row--scroll-effect--container"></div>
-    <div class="row__container js-row-container">
-        <div id="page-zones__footer-widgets__64d1cd43802e1-widgets__64d1cd4391ccb" data-name="companybrand" class="widget widget--zone-widget js-widget" data-uniqueid="46qNlz62NQ5Bz6e" data-parentuniqueid="2wtFCs8KSDVHg5Q">
-            <!-- Hier kommt dein Firmenlogo hin -->
-        </div>
-        <div id="page-zones__footer-widgets__64d1cd43802e1-widgets__64d1cd4398780" data-name="contentgroup" class="widget widget--zone-widget js-widget" data-uniqueid="dzHLJIlbhkjLqTG" data-parentuniqueid="2wtFCs8KSDVHg5Q">
-            <!-- Hier kommt der Textinhalt des Footers hin -->
-        </div>
-        <div id="page-zones__footer-widgets__64d1cd43802e1-widgets__64d1cd43a286d" data-name="contact" class="widget widget--zone-widget js-widget" data-uniqueid="6Otj3WaG3Rwenu1" data-parentuniqueid="2wtFCs8KSDVHg5Q">
-            <!-- Hier kommen deine Kontaktdaten und Social-Media-Links hin -->
-        </div>
-        <div id="page-zones__footer-widgets__64d1cd43802e1-widgets__64d1cd43b9bb7" data-name="policypages" class="widget widget--zone-widget js-widget" data-uniqueid="lXbsTXI6ZqjZXoq" data-parentuniqueid="2wtFCs8KSDVHg5Q">
-            <!-- Hier kommen ggf. Links zu Datenschutzrichtlinien oder ähnliches hin -->
+
+
+
+
+
+            <!-- Kleine Bilder in der zweiten Reihe -->
+            <!-- <div class="col-lg-3 col-md-3 col-sm-6">
+                <img src="{{ asset('img/logo.png') }}" class="img-fluid" alt="Bild 3">
+            </div> -->
+            <div>
+                <img src="{{ asset('img/arxada.png') }}" class="img-fluid" alt="Bild 4">
+                <img src="{{ asset('img/unicnt.png') }}" class="img-fluid" alt="Bild 5">
+                <img src="{{ asset('img/wkb.png') }}" class="img-fluid" alt="Bild 6">
+            </div>
         </div>
     </div>
 </div>
