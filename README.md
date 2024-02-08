@@ -1,6 +1,5 @@
-# Casino Webseite Setup-Anleitung
-
-Um die Casino-Webseite lokal auf deinem Rechner einzurichten, folge bitte diesen Schritten:
+# OUM WEBAPP setup
+Um die OUM WEBAPP lokal auf deinem Rechner einzurichten, folge bitte diesen Schritten:
 
 ## Projekt klonen
 
