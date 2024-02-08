@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('match_results', function (Blueprint $table) {
+        Schema::create('league', function (Blueprint $table) {
             $table->id();
             $table->string('team');
             $table->unsignedInteger('games_played');
