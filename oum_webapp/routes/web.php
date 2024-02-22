@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\GameOperationController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Team;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +28,8 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/edit', function () {
-    return view('edit');
+    $teams = Team::all();
+    return view('edit', compact('teams'));
 })->middleware(['auth', 'verified'])->name('edit');
 
 
@@ -54,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
+    Route::get('/players/create', [AdminController::class, 'createPlayer'])->name('admin.players.create');
+    Route::post('/players', [AdminController::class, 'storePlayer'])->name('admin.players.store');
 });
 
 require __DIR__.'/auth.php';
