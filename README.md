@@ -33,14 +33,23 @@ npm run build
 Starte XAMPP und starte Apache und MySQL.
 
 ## Datenbank konfigurieren
-Öffne die `.env-Datei` im Laravel-Projekt und ändere die Zeile:
+Öffne die `.env-Datei` im Laravel-Projekt und ändere diese Zeilen:
 
 
-<code>DB_DATABASE=</code>
+```bash
+DB_CONNECTION=mysql
+DB_HOST=database-3.c7u0mqk069db.eu-north-1.rds.amazonaws.com
+DB_PORT=3306
+DB_DATABASE=database_main
+DB_USERNAME=*****
+DB_PASSWORD=**********
+```
 
-zu:
 
-<code>DB_DATABASE=test</code>
+
+
+
+
 
 ## Datenbank migrieren
 Führe den folgenden Befehl im Terminal (PHP) aus, um die Datenbankmigration durchzuführen:
