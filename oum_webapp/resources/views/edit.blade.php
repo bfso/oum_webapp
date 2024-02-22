@@ -9,8 +9,50 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
    
+                <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                 </div>
             </div>
         </div>
+        <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+  
+                 
+
+                </div>
+                <footer>
+        @include('layouts.footer')
+    </footer>
+            </div>
+    
+        </div>
+ 
+    </div>
+  
     </div>
 </x-app-layout>
