@@ -3,27 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Team;
 
 class GameOperationController extends Controller
 {
     public function index($league)
     {
-        // Abhängig von der übergebenen Liga holst du die entsprechenden Daten aus der Datenbank
+        // Daten für die ausgewählte Liga abrufen
+        $data = $this->getDataForLeague($league);
+
+        // Daten an das Blade-Template übergeben
+        return view('gameoperation', compact('league', 'data'));
+    }
+
+    private function getDataForLeague($league)
+    {
+        // Abhängig von der übergebenen Liga die entsprechenden Daten abrufen
         switch ($league) {
             case 'herrenA':
-                $data = HerrenA::all(); // Beispiel: Holen Sie alle Daten für Herren A
+                // Beispiel: Daten für Herren A aus der Datenbank abrufen
+                $category = Category::where('name', 'Herren A')->first();
+                $data = $category ? $category->teams : [];
                 break;
             case 'herrenB':
-                $data = HerrenB::all(); // Beispiel: Holen Sie alle Daten für Herren B
+                // Beispiel: Daten für Herren B aus der Datenbank abrufen
+                $category = Category::where('name', 'Herren B')->first();
+                $data = $category ? $category->teams : [];
                 break;
             // Weitere Fälle für andere Ligen hinzufügen, falls erforderlich
             default:
                 $data = []; // Standardwert, falls Liga nicht erkannt wird
         }
 
-        // Gib die Daten an die Blade-Vorlage weiter
-        return view('gameoperation', ['league' => $league, 'data' => $data]);
+        return $data;
     }
-    
 }
-

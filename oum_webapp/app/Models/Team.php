@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Team extends Model
 {
+<<<<<<< HEAD
     use HasFactory;
 
     protected $fillable = ['name', 'category_id'];
@@ -15,9 +15,12 @@ class Team extends Model
     {
         return $this->belongsTo(Category::class);
     }
+=======
+    protected $fillable = ['name', 'category_id'];
+>>>>>>> origin/features/19-navbar_gameoperations
 
-    public function players()
+    public function category()
     {
-        return $this->belongsToMany(Player::class, 'player_teams', 'team_id', 'player_id');
+        return $this->belongsTo(Category::class);
     }
 }
