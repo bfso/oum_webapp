@@ -74,4 +74,19 @@ class AdminController extends Controller
 
         return redirect()->route('edit')->with('success', 'Team erfolgreich hinzugefügt.');
     }
+
+    public function destroyTeam($id)
+    {
+        $team = Team::findOrFail($id);
+        $team->delete();
+        return redirect()->route('edit')->with('success', 'Team erfolgreich gelöscht.');
+    }
+
+    public function destroyCategory(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('edit')->with('success', 'Kategorie erfolgreich gelöscht.');
+    }
+
 }
