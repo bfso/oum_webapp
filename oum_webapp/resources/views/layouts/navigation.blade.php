@@ -12,16 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-customColor4 dark:text-customColor4">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-customColor6 dark:text-customColor4">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="text-customColor4 dark:text-customColor4">
+                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="text-customColor6 dark:text-customColor4">
                         {{ __('Bearbeiten') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="text-customColor4 dark:text-customColor4">
+                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="text-customColor6 dark:text-customColor4">
                         {{ __('Verband') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('gameoperation', ['league' => 'herrenA'])" :active="request()->routeIs('gameoperation')" class="text-customColor4 dark:text-customColor4">
+                    <x-nav-link :href="route('gameoperation', ['league' => 'herrenA'])" :active="request()->routeIs('gameoperation')" class="text-customColor6 dark:text-customColor4">
     {{ __('Spielbetrieb') }}
 </x-nav-link>
 
