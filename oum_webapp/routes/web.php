@@ -6,6 +6,7 @@ use App\Models\Team;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\AdminController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/edit', function () {
     $teams = Team::all();
-    return view('edit', compact('teams'));
+    $categories = Category::all();
+    return view('edit', compact('teams', 'categories'));
 })->middleware(['auth', 'verified'])->name('edit');
 
 
@@ -38,9 +40,14 @@ Route::get('/association', function () {
 })->middleware(['auth', 'verified'])->name('association');
 
 
+
 Route::get('/gameoperation', function () {
-    return view('gameoperation');
+    $categories = Category::pluck('name')->toArray();
+    return view('gameoperation', compact('categories'));
 })->middleware(['auth', 'verified'])->name('gameoperation');
+
+
+
 
 Route::get('/history', function () {
     return view('history');
@@ -59,12 +66,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
-    Route::get('/players/create', [AdminController::class, 'createPlayer'])->name('admin.players.create');
     Route::post('/players', [AdminController::class, 'storePlayer'])->name('admin.players.store');
+    Route::post('/teams', [AdminController::class, 'storeTeam'])->name('admin.teams.store');
+    Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
+    Route::delete('/teams/{id}', [AdminController::class, 'destroyTeam'])->name('admin.teams.destroy');
+    Route::delete('/categories/{category}', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
+
+
 });
 
-require __DIR__.'/auth.php';
-
-Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
-
-
+require __DIR__ . '/auth.php';

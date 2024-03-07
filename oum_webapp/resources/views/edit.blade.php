@@ -66,7 +66,7 @@
                     <br>
 >>>>>>> feature/20-navigationVerband
                 </div>
-                
+
             </div>
 
             <br>
@@ -75,7 +75,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.players.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -90,7 +90,7 @@
 
                         <div class="mb-3">
                             <label for="player_nr" class="form-label">Spieler Nr.</label>
-                            <input type="text" class="form-control" id="player_nr" name="player_nr" required>
+                            <input type="number" class="form-control" id="player_nr" name="player_nr" required>
                         </div>
 
                         <div class="mb-3">
@@ -113,16 +113,117 @@
 
                     </div>
                 </div>
-                
+
             </div>
+
+            <br>
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        
+                        <form method="POST" action="{{ route('admin.teams.store') }}">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Teamname</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category_id" class="form-label">Kategorie</label>
+                                <select class="form-select" id="category_id" name="category_id" required>
+                                    <option value="">Bitte wählen</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Team hinzufügen</button>
+                        </form>
+
                     </div>
                 </div>
-                
+
+            </div>
+
+            <br>
+
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Teams verwalten
+                            </h2>
+                            <div class="mt-4">
+                                <ul>
+                                    @foreach($teams as $team)
+                                    <li>{{ $team->name }} - Kategorie: {{ $team->category->name }}
+                                        <form method="POST" action="{{ route('admin.teams.destroy', $team->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                        </form>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Kategorien verwalten
+                        </h2>
+                        <div class="mt-4">
+                            <ul>
+                                @foreach($categories as $category)
+                                <li>{{ $category->name }}
+                                    <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                    </form>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
             </div>
 
         </div>

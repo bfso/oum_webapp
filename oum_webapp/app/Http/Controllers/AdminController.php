@@ -6,55 +6,87 @@ use App\Models\Category;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
     public function storeCategory(Request $request)
     {
-        // Validierung der Eingabe
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        // Überprüfe, ob die Kategorie bereits existiert
         $existingCategory = Category::where('name', $request->name)->first();
 
         if ($existingCategory) {
-            // Kategorie existiert bereits
             return redirect()->back()->with('error', 'Die Kategorie existiert bereits.');
         }
 
-        // Neue Kategorie erstellen und in der Datenbank speichern
         Category::create([
             'name' => $request->name,
         ]);
 
-        // Weiterleitung nach erfolgreicher Erstellung
         return redirect()->route('edit')->with('success', 'Kategorie erfolgreich erstellt.');
     }
 
-    public function createPlayer()
+    public function createTeam()
     {
-        return view('admin.createPlayer');
+        $categories = Category::all();
+        return view('admin.createTeam', compact('categories'));
     }
-
     public function storePlayer(Request $request)
     {
-        // Validierung der Eingabe
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            // Füge hier weitere Validierungsregeln für Spielerdetails hinzu
+            'player_nr' => 'required|max:255',
         ]);
 
-        // Spieler erstellen und in der Datenbank speichern
+        $existingPlayer = Player::where('license_nr', $request->player_nr)->first();
+
+        if ($existingPlayer) {
+            return redirect()->back()->with('error', 'Ein Spieler mit dieser Lizenznummer existiert bereits.');
+        }
+
+        $licenseNr = Str::random(10);
+
         Player::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
-            // Füge hier weitere Spielerdetails hinzu
+            'player_nr' => $request->player_nr,
+            'license_nr' => $licenseNr,
         ]);
 
-        // Weiterleitung nach erfolgreicher Erstellung
-        return redirect()->route('admin.dashboard')->with('success', 'Spieler erfolgreich erstellt.');
+        return redirect()->route('edit')->with('success', 'Spieler erfolgreich erstellt.');
     }
+
+    public function storeTeam(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        Team::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+        ]);
+
+        return redirect()->route('edit')->with('success', 'Team erfolgreich hinzugefügt.');
+    }
+
+    public function destroyTeam($id)
+    {
+        $team = Team::findOrFail($id);
+        $team->delete();
+        return redirect()->route('edit')->with('success', 'Team erfolgreich gelöscht.');
+    }
+
+    public function destroyCategory(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('edit')->with('success', 'Kategorie erfolgreich gelöscht.');
+    }
+
 }

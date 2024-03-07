@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('player_nr');
+            $table->integer('player_nr');
             $table->string('license_nr')->unique();
             $table->string('img')->nullable();
             $table->unsignedBigInteger('playing_for');
             $table->boolean('presence')->default(false);
             $table->timestamps();
+
+            $table->foreign('playing_for')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 
