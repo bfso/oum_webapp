@@ -11,41 +11,37 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Liste der Links für verschiedene Ligen -->
                     <div class="flex space-x-4">
-                            @foreach($categories as $category)
-                                <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-blue-500 hover:text-blue-700">{{ ucfirst($category) }}</a>
-                            @endforeach
+                        @foreach($categories as $category)
+                            <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-blue-500 hover:text-blue-700">{{ ucfirst($category) }}</a>
+                        @endforeach
                     </div>
-
 
                     @if(isset($teams))
                         <!-- Anzeige der Daten für die ausgewählte Liga -->
                         @if($teams->count() > 0)
-                        <!-- Anzeige der Teams in einer Tabelle -->
+                            <!-- Anzeige der Teams in einer Tabelle -->
                             <div class="mt-4">
                                 <table class="table-auto">
                                     <thead>
                                         <tr>
+                                            <th>Rang</th>
                                             <th>Name</th>
                                             <th>Punkte</th>
                                             <th>Tore</th>
                                             <th>Gegentore</th>
-
                                             <th>Tordifferenz</th>
-
                                             <!-- Weitere Spalten, falls benötigt -->
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($teams as $team)
+                                        @foreach($teams as $index => $team)
                                             <tr>
+                                                <td>{{ $index + 1 }}</td>
                                                 <td>{{ $team->name }}</td>
                                                 <td>{{ $team->points }}</td>
                                                 <td>{{ $team->goals }}</td>
                                                 <td>{{ $team->goals_conceded }}</td>
                                                 <td>{{ $team->goal_difference }}</td>
-
-                                                
-
                                                 <!-- Weitere Spalten, falls benötigt -->
                                             </tr>
                                         @endforeach
@@ -53,15 +49,10 @@
                                 </table>
                             </div>
                         @else
-                            
-                        @endif 
+                            <!-- Füge hier eine Nachricht ein, wenn keine Teams vorhanden sind -->
+                            <p>Keine Teams gefunden.</p>
+                        @endif
                     @endif
-
-
-                    </div>
-                    
-
-                  
                 </div>
             </div>
         </div>

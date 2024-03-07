@@ -41,11 +41,7 @@ Route::get('/association', function () {
 
 
 
-Route::get('/gameoperation', function () {
-    $categories = Category::pluck('name')->toArray(); // Annahme: 'name' ist das Feld in deiner Tabelle categories, das den Kategorienamen enthält
 
-    return view('gameoperation', compact('categories'));
-})->middleware(['auth', 'verified'])->name('gameoperation');
 
 
  
@@ -62,6 +58,12 @@ Route::get('/associationmember', function () {
     return view('associationmember');
 })->middleware(['auth', 'verified'])->name('associationmember');
 
+Route::get('/gameoperations', function () {
+    $categories = Category::pluck('name')->toArray();
+
+    return view('gameoperation', compact('categories'));
+})->middleware(['auth', 'verified'])->name('associationmember');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -70,6 +72,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/players', [AdminController::class, 'storePlayer'])->name('admin.players.store');
     Route::post('/teams', [AdminController::class, 'storeTeam'])->name('admin.teams.store');
     Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
+
+    
 });
 
 require __DIR__.'/auth.php';
