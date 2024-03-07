@@ -27,6 +27,9 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Punkte</th>
+                                            <th>Tore</th>
+                                            <th>Gegentore</th>
+
                                             <th>Tordifferenz</th>
 
                                             <!-- Weitere Spalten, falls benötigt -->
@@ -37,7 +40,11 @@
                                             <tr>
                                                 <td>{{ $team->name }}</td>
                                                 <td>{{ $team->points }}</td>
+                                                <td>{{ $team->goals }}</td>
+                                                <td>{{ $team->goals_conceded }}</td>
                                                 <td>{{ $team->goal_difference }}</td>
+
+                                                
 
                                                 <!-- Weitere Spalten, falls benötigt -->
                                             </tr>

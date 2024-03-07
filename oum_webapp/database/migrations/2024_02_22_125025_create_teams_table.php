@@ -15,9 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('category_id');
+            $table->integer('points')->default(0);
+            $table->integer('goals')->default(0);
+            $table->integer('goals_conceded')->default(0);
+            
+
             $table->timestamps();
         
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            
         });
         
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Team;
-use App\Models\Point; // Importiere das Point-Modell
 
 class GameOperationController extends Controller
 {
@@ -18,12 +17,13 @@ class GameOperationController extends Controller
 
     private function getDataForLeague($league)
     {
-        return Team::select('teams.*', 'points.points')
-            ->join('points', 'teams.id', '=', 'points.team_id')
-            ->join('categories', 'points.category_id', '=', 'categories.id')
+        // Annahme: Es gibt eine Beziehung zwischen Team und Kategorie
+        return Team::select('teams.*')
+            ->selectRaw('(teams.goals - teams.goals_conceded) as goal_difference') // Berechne die Tordifferenz
+            ->join('categories', 'teams.category_id', '=', 'categories.id')
             ->where('categories.name', $league)
-            ->orderByDesc('points.points')
-            ->orderByDesc('points.goal_difference') // Dann nach Tordifferenz sortieren
+            ->orderByDesc('teams.points') // Zuerst nach Punkten sortieren
+            ->orderByDesc('goal_difference') // Dann nach Tordifferenz sortieren
             ->get();
     }
 }
