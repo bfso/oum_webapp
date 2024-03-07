@@ -1,8 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Verband') }}
-        </h2>
+              
+<link href='https://fonts.googleapis.com/css?family=Black+Ops+One|Luckiest+Guy|Sonsie+One|Shojumaru&effect=3d|3d-float|anaglyph|brick-sign|canvas-print|
+            crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
+            scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
+            rel='stylesheet' type='text/css'>
+
+<span class="font-effect-vintage" style="font-size:30px; font-family:Luckiest Guy;">Verband</span><br>
     </x-slot>
 
     <div class="py-12">
