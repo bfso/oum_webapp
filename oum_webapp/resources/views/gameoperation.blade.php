@@ -11,19 +11,27 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Liste der Links für verschiedene Ligen -->
                     <div class="flex space-x-4">
-                        <a href="{{ route('gameoperation', ['league' => 'herrenA']) }}" class="text-blue-500 hover:text-blue-700">Herren A</a>
-                        <a href="{{ route('gameoperation', ['league' => 'herrenB']) }}" class="text-blue-500 hover:text-blue-700">Herren B</a>
-                        <!-- Weitere Links für andere Ligen hinzufügen -->
+                            @foreach($categories as $category)
+                                <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-blue-500 hover:text-blue-700">{{ ucfirst($category) }}</a>
+                            @endforeach
                     </div>
 
-                    <!-- Anzeige der Daten für die ausgewählte Liga -->
-                    <div class="mt-4">
-                        @foreach ($data as $item)
-                            <p>{{ $item->name }}</p>
-                            <!-- Weitere Felder anzeigen, je nach Bedarf -->
-                        @endforeach
+
+                    @if(isset($teams))
+                        <!-- Anzeige der Daten für die ausgewählte Liga -->
+                        <div class="mt-4">
+                            @foreach ($teams as $team)
+                                <p>{{ $team->name }}</p>
+                                <!-- Weitere Felder anzeigen, je nach Bedarf -->
+                            @endforeach
+                        </div>
+                    @endif
+
 
                     </div>
+                    
+
+                  
                 </div>
             </div>
         </div>
