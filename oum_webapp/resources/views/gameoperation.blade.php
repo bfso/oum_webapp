@@ -19,12 +19,35 @@
 
                     @if(isset($teams))
                         <!-- Anzeige der Daten für die ausgewählte Liga -->
-                        <div class="mt-4">
-                            @foreach ($teams as $team)
-                                <p>{{ $team->name }}</p>
-                                <!-- Weitere Felder anzeigen, je nach Bedarf -->
-                            @endforeach
-                        </div>
+                        @if($teams->count() > 0)
+                        <!-- Anzeige der Teams in einer Tabelle -->
+                            <div class="mt-4">
+                                <table class="table-auto">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Punkte</th>
+                                            <th>Tordifferenz</th>
+
+                                            <!-- Weitere Spalten, falls benötigt -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($teams as $team)
+                                            <tr>
+                                                <td>{{ $team->name }}</td>
+                                                <td>{{ $team->points }}</td>
+                                                <td>{{ $team->goal_difference }}</td>
+
+                                                <!-- Weitere Spalten, falls benötigt -->
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            
+                        @endif 
                     @endif
 
 
