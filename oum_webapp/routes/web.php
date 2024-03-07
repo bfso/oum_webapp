@@ -40,9 +40,15 @@ Route::get('/association', function () {
 })->middleware(['auth', 'verified'])->name('association');
 
 
+
 Route::get('/gameoperation', function () {
-    return view('gameoperation');
+    $categories = Category::pluck('name')->toArray(); // Annahme: 'name' ist das Feld in deiner Tabelle categories, das den Kategorienamen enthält
+
+    return view('gameoperation', compact('categories'));
 })->middleware(['auth', 'verified'])->name('gameoperation');
+
+
+ 
 
 Route::get('/history', function () {
     return view('history');
@@ -63,10 +69,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
     Route::post('/players', [AdminController::class, 'storePlayer'])->name('admin.players.store');
     Route::post('/teams', [AdminController::class, 'storeTeam'])->name('admin.teams.store');
+    Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
 });
 
 require __DIR__.'/auth.php';
 
-Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
 
 
