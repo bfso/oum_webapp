@@ -154,6 +154,73 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
 
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Teams verwalten
+                            </h2>
+                            <div class="mt-4">
+                                <ul>
+                                    @foreach($teams as $team)
+                                    <li>{{ $team->name }} - Kategorie: {{ $team->category->name }}
+                                        <form method="POST" action="{{ route('admin.teams.destroy', $team->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                        </form>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Kategorien verwalten
+                        </h2>
+                        <div class="mt-4">
+                            <ul>
+                                @foreach($categories as $category)
+                                <li>{{ $category->name }}
+                                    <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                    </form>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
                     </div>
                 </div>
 
