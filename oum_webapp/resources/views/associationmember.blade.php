@@ -1,0 +1,25 @@
+<x-app-layout>
+<head>
+    ewe
+    <br>
+    <br><br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</head>
+<footer>
+    <div>
+    @include('layouts.footer')
+    </div>
+    </footer>
+    </x-app-layout>

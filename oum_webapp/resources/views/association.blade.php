@@ -18,8 +18,32 @@
                     <x-nav-link :href="route('associationmember')" :active="request()->routeIs('associationmember')">
                         {{ __('Verbandsmitglieder') }}
                     </x-nav-link>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
                 </div>
             </div>
         </div>
+        <footer>
     </div>
+    @include('layouts.footer')
+    </footer>
 </x-app-layout>
