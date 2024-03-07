@@ -59,4 +59,9 @@
             </div>
         </div>
     </div>
+    <footer>
+    <div>
+    @include('layouts.footer')
+    </div>
+    </footer>
 </x-app-layout>

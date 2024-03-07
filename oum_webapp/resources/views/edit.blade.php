@@ -1,8 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Spieler hinzufügen') }}
-        </h2>
+        
+    <link href='https://fonts.googleapis.com/css?family=Black+Ops+One|Luckiest+Guy|Sonsie+One|Shojumaru&effect=3d|3d-float|anaglyph|brick-sign|canvas-print|
+            crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
+            scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
+            rel='stylesheet' type='text/css'>
+
+<span class="font-effect-vintage" style="font-size:30px; font-family:Luckiest Guy;">Spieler hinzufügen</span><br>
     </x-slot>
 
     <div class="py-12">
@@ -11,7 +15,6 @@
             <!--Kategorien erstellen-->
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-<<<<<<< HEAD
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <form method="POST" action="{{ route('admin.categories.store') }}">
                             @csrf
@@ -38,33 +41,6 @@
                         </form>
 
                     </div>
-=======
-   
-                <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
->>>>>>> feature/20-navigationVerband
                 </div>
 
             </div>
@@ -164,7 +140,7 @@
                                         <form method="POST" action="{{ route('admin.teams.destroy', $team->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                            <button type="submit" class="btn2">Löschen</button>
                                         </form>
                                     </li>
                                     @endforeach
@@ -192,7 +168,7 @@
                                     <form method="POST" action="{{ route('admin.categories.destroy', $category->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                        <button type="submit" class="btn2">Löschen</button>
                                     </form>
                                 </li>
                                 @endforeach
@@ -246,4 +222,107 @@
     </div>
   
     </div>
+
+    <style>
+/* Füge diese Styles zum Anpassen des Formulars hinzu */
+form {
+    max-width: 400px;
+    margin: 0;
+}
+
+/* Füge abgerundete Ecken zu den Buttons hinzu */
+.btn {
+    border-radius: 0.375rem;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.5s;
+    background-color: #BF0404; 
+    border-color: #ff3d00;
+    color: #fff;
+    padding: 0.5rem 1rem; /* Anpassung der Breite des Buttons */
+}
+
+/* Füge eine leichte Hervorhebungsanimation zu den Buttons hinzu */
+.btn:hover {
+    background-color: #A60303; 
+    border-color: #590202;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background-color: #b71c1c; 
+    border-color: #b71c1c;
+    transform: scale(0.95); 
+}
+
+/* Füge eine leichte Eingabeanimation zu den Formularelementen hinzu */
+.form-control,
+.form-select {
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #ff3d00; 
+    box-shadow: 0 0 0 0.2rem rgba(255, 61, 0, 0.25); 
+}
+
+/* Style für Formular-Labels */
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333; /* Textfarbe für Labels */
+}
+
+/* Style für Formular-Textfelder */
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd; /* Rahmfarbe für Textfelder */
+    border-radius: 0.25rem;
+    background-color: #fff; /* Hintergrundfarbe für Textfelder */
+    color: #555; /* Textfarbe für Textfelder */
+}
+
+/* Style für Formular-Textfelder im Fokus */
+.form-control:focus {
+    border-color: #ff3d00; /* Rahmfarbe für Textfelder im Fokus */
+    box-shadow: 0 0 0 0.2rem rgba(255, 61, 0, 0.25); /* Leichter Schatten für Textfelder im Fokus */
+}
+
+/* Positioniere die Formularelemente am linken Rand */
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+/* Stilisiere die Erfolgs- und Fehlermeldungen */
+.alert {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.btn2{
+    border-radius: 0.375rem;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.5s;
+    background-color: #BF0404; 
+    border-color: #ff3d00;
+    color: #fff;
+    padding: 1px 1px; 
+}
+
+
+
+
+    </style>
 </x-app-layout>

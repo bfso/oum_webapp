@@ -50,4 +50,9 @@
     </div>
     @include('layouts.footer')
     </footer>
+
+
+    <style>
+        
+    </style>
 </x-app-layout>
