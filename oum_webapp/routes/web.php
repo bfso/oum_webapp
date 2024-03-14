@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\AdminController;
 use App\Models\Category;
+use App\Models\Venue;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,13 +29,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/edit', function () {
-    $teams = Team::all();
-    $categories = Category::all();
-    return view('edit', compact('teams', 'categories'));
-})->middleware(['auth', 'verified'])->name('edit');
-
-
 Route::get('/association', function () {
     return view('association');
 })->middleware(['auth', 'verified'])->name('association');
@@ -42,9 +36,13 @@ Route::get('/association', function () {
 
 
 
+Route::get('/gameoperation', function () {
+    $categories = Category::pluck('name')->toArray();
+    return view('gameoperation', compact('categories'));
+})->middleware(['auth', 'verified'])->name('gameoperation');
 
 
- 
+
 
 Route::get('/history', function () {
     return view('history');
@@ -65,6 +63,7 @@ Route::get('/gameoperation', function () {
 })->middleware(['auth', 'verified'])->name('associationmember');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/edit', [AdminController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -74,9 +73,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
 
     
+    Route::delete('/teams/{id}', [AdminController::class, 'destroyTeam'])->name('admin.teams.destroy');
+    Route::delete('/categories/{category}', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
+    Route::post('/venues', [AdminController::class, 'storeVenue'])->name('admin.venues.store');
+    Route::delete('/venues/{venue}', [AdminController::class, 'destroyVenue'])->name('admin.venues.destroy');
+
 });
 
-require __DIR__.'/auth.php';
-
-
-
+require __DIR__ . '/auth.php';

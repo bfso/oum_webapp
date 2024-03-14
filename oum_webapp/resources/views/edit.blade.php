@@ -154,10 +154,149 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
 
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Teams verwalten
+                            </h2>
+                            <div class="mt-4">
+                                <ul>
+                                    @foreach($teams as $team)
+                                    <li>{{ $team->name }} - Kategorie: {{ $team->category->name }}
+                                        <form method="POST" action="{{ route('admin.teams.destroy', $team->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                        </form>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
                     </div>
                 </div>
 
             </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Standorte verwalten
+                        </h2>
+                        @foreach($venues as $venue)
+                            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-6 text-gray-900 dark:text-gray-100">
+                                    <p>{{ $venue->name }}</p>
+                                    <!-- Formular zum Löschen -->
+                                    <form method="POST" action="{{ route('admin.venues.destroy', $venue->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700 ml-2">Löschen</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <form method="POST" action="{{ route('admin.venues.store') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Standort</label>
+                            <input type="text" class="form-control" id="location" name="location" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Venue hinzufügen</button>
+                    </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                        <form method="POST" action="{{ route('admin.venues.destroy', $venue->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            
+                            <p>Sind Sie sicher, dass Sie die Venue "{{ $venue->name }}" löschen möchten?</p>
+                            
+                            <button type="submit" class="btn btn-danger">Löschen</button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
+                </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    </div>
+                </div>
+
+            </div>
+
+            
 
         </div>
         <br>
