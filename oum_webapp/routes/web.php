@@ -58,7 +58,7 @@ Route::get('/associationmember', function () {
     return view('associationmember');
 })->middleware(['auth', 'verified'])->name('associationmember');
 
-Route::get('/gameoperations', function () {
+Route::get('/gameoperation', function () {
     $categories = Category::pluck('name')->toArray();
 
     return view('gameoperation', compact('categories'));
