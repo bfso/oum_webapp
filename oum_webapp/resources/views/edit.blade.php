@@ -12,17 +12,41 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <!--Kategorien erstellen-->
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+<<<<<<< HEAD
+=======
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+
+                    <a href="#kategorieHinzufügen">Kategorien Hinzufügen</a>  <!--Anker Link zu Kategorien hinzufügen !-->
+                    <a href="#spielerHinzufügen">Spieler Hinzufügen</a>  <!--Anker Link zu Spieler hinzufügen !-->
+                    <a href="#teamHinzufügen">Team Hinzufügen</a>  <!--Anker Link zu Team hinzufügen !-->
+                    <a href="#teamVerwalten">Team Verwalten</a>  <!--Anker Link zu Teams verwalten !-->
+                    <a href="#kategorieVerwalten">Kategorien Verwalten</a>  <!--Anker Link zu Kategorien verwalten !-->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <!--Kategorien erstellen-->
+            <section id="kategorieHinzufügen"></section>
+            
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                                           
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+>>>>>>> origin/feature/24-Anker-Links
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <form method="POST" action="{{ route('admin.categories.store') }}">
                             @csrf
 
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Kategorie Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
-                            </div>
+
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Kategorie Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+
 
                             <button type="submit" class="btn btn-primary">Kategorie erstellen</button>
 
@@ -41,6 +65,11 @@
                         </form>
 
                     </div>
+<<<<<<< HEAD
+=======
+   
+
+>>>>>>> origin/feature/24-Anker-Links
                 </div>
 
             </div>
@@ -48,11 +77,15 @@
             <br>
 
             <!--Spieler erstellen-->
+            <section id="spielerHinzufügen"></section>
+
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('admin.players.store') }}" enctype="multipart/form-data">
                         @csrf
+
+
 
                         <div class="mb-3">
                             <label for="first_name" class="form-label">Vorname</label>
@@ -94,11 +127,16 @@
 
             <br>
 
+            <!--Team Hinzufügen Anker Link!-->
+            <section id="teamHinzufügen"></section>
+
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <form method="POST" action="{{ route('admin.teams.store') }}">
                             @csrf
+
+
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Teamname</label>
@@ -126,9 +164,14 @@
             <br>
 
 
+            <!--Team Verwaltung Anker Link!-->
+            <section id="teamVerwalten"></section>
+
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
+
+
 
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                             Teams verwalten
@@ -154,9 +197,14 @@
 
             <br>
 
+            <!--Kategorie Verwaltung Anker Link!-->
+            <section id="kategorieVerwalten"></section>
+
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
+
+
 
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                             Kategorien verwalten
@@ -220,6 +268,7 @@
         </div>
  
     </div>
+
   
     </div>
 
