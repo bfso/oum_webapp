@@ -11,7 +11,6 @@
             <!--Kategorien erstellen-->
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-<<<<<<< HEAD
                     <div class="p-6 text-gray-900 dark:text-gray-100">
                         <form method="POST" action="{{ route('admin.categories.store') }}">
                             @csrf
@@ -38,33 +37,9 @@
                         </form>
 
                     </div>
-=======
-   
                 <br>
                     <br>
                     <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    <br>
-                    <br>
-                    <br>
-                    <br>
->>>>>>> feature/20-navigationVerband
                 </div>
 
             </div>
