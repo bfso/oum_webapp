@@ -3,27 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Team;
 
 class GameOperationController extends Controller
 {
     public function index($league)
     {
-        // Abhängig von der übergebenen Liga holst du die entsprechenden Daten aus der Datenbank
-        switch ($league) {
-            case 'herrenA':
-                $data = HerrenA::all(); // Beispiel: Holen Sie alle Daten für Herren A
-                break;
-            case 'herrenB':
-                $data = HerrenB::all(); // Beispiel: Holen Sie alle Daten für Herren B
-                break;
-            // Weitere Fälle für andere Ligen hinzufügen, falls erforderlich
-            default:
-                $data = []; // Standardwert, falls Liga nicht erkannt wird
+        $teams = $this->getDataForLeague($league);
+        $categories = Category::pluck('name')->toArray();
+
+        // Bestimme den Rang für jedes Team basierend auf den Punkten und der Tordifferenz
+        $rank = 1;
+        $prevPoints = null;
+        $prevGoalDifference = null;
+
+        foreach ($teams as $team) {
+            if ($prevPoints !== null && ($team->points != $prevPoints || $team->goal_difference != $prevGoalDifference)) {
+                $rank++;
+            }
+
+            $team->rank = $rank;
+            $prevPoints = $team->points;
+            $prevGoalDifference = $team->goal_difference;
         }
 
-        // Gib die Daten an die Blade-Vorlage weiter
-        return view('gameoperation', ['league' => $league, 'data' => $data]);
+        return view('gameoperation', compact('league', 'teams', 'categories'));
     }
-    
-}
 
+    private function getDataForLeague($league)
+    {
+        return Team::select('teams.*')
+            ->selectRaw('(teams.goals - teams.goals_conceded) as goal_difference') 
+            ->join('categories', 'teams.category_id', '=', 'categories.id')
+            ->where('categories.name', $league)
+            ->orderByDesc('teams.points') 
+            ->orderByDesc('goal_difference') 
+            ->get();
+    }
+}

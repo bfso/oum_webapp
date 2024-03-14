@@ -21,9 +21,14 @@
                     <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="text-customColor6 dark:text-customColor4">
                         {{ __('Verband') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('gameoperation', ['league' => 'herrenA'])" :active="request()->routeIs('gameoperation')" class="text-customColor6 dark:text-customColor4">
-    {{ __('Spielbetrieb') }}
-</x-nav-link>
+                    <x-nav-link :href="url('gameoperation')" :active="request()->routeIs('gameoperation')">
+                        {{ __('Spielbetrieb') }}
+                    </x-nav-link>
+
+
+
+
+
 
                 </div>
             </div>
