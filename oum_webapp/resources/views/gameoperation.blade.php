@@ -49,7 +49,7 @@
                                                 <td class="px-4 py-2">{{ $team->goals }}</td>
                                                 <td class="px-4 py-2">{{ $team->goals_conceded }}</td>
                                                 <td class="px-4 py-2">{{ $team->goal_difference }}</td>
-                                                <td class="px-4 py-2">{{ $team->points }}</td>
+                                                <td class="px-4 py-2 font-semibold">{{ $team->points }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
