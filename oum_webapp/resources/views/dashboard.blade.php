@@ -1,13 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-     
-    <link href='https://fonts.googleapis.com/css?family=Black+Ops+One|Luckiest+Guy|Sonsie+One|Shojumaru&effect=3d|3d-float|anaglyph|brick-sign|canvas-print|
-            crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
-            scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
-            rel='stylesheet' type='text/css'>
-
-<span class="font-effect-vintage" style="font-size:30px; font-family:Luckiest Guy;">Home</span><br>
-
+        <div id="header">
+            <link href='https://fonts.googleapis.com/css?family=Black+Ops+One|Luckiest+Guy|Sonsie+One|Shojumaru&effect=3d|3d-float|anaglyph|brick-sign|canvas-print|
+                crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
+                scuffed-steel|shadow-multiple|splintered|static|stonewash|vintage|wallpaper' 
+                rel='stylesheet' type='text/css'>
+            <span class="font-effect-vintage" style="font-size:30px; font-family:Luckiest Guy;">Home</span><br>
+        </div>
     </x-slot>
     
     <div class="py-12">
@@ -56,6 +55,10 @@
 
 
     <style>
+        #header {
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 10px; 
+}
 
 
 
