@@ -12,18 +12,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="visited:text-customColor8 dark:text-customColor4">
                         {{ __('Home') }}
                     </x-nav-link>
                     @auth
-                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="visited:text-customColor8 dark:text-customColor4">
                         {{ __('Bearbeiten') }}
                     </x-nav-link>
                     @endauth
-                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="visited:text-customColor8 dark:text-customColor4">
                         {{ __('Verband') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('gameoperation')" :active="request()->routeIs('gameoperation')" class="text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="url('gameoperation')" :active="request()->routeIs('gameoperation')" class="visited:text-customColor8 dark:text-customColor4">
                         {{ __('Spielbetrieb') }}
                     </x-nav-link>
 
@@ -73,7 +73,12 @@
             @endauth   
 
             @guest
-            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+            <a href="{{ route('login') }}" class="inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-customColor6 dark:bg-customColor4 hover:text-customColor5 dark:hover:text-customColor5 focus:outline-none focus:ring-2 focus:ring-customColor6 focus:ring-offset-2 transition ease-in-out duration-150" style="margin-top: 15px; margin-bottom: 15px;">
+  Log in
+</a>
+
+
+
             @endguest 
 
             <!-- Hamburger -->
