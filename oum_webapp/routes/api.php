@@ -48,7 +48,11 @@ Route::middleware('api')->get('/user', function (Request $request) {
 
 Route::middleware('api')->get('/teams', function () {
     $teams = Team::all();
-    return response()->json(['teams' => $teams]);
+    return response()->json([
+        'message' => 'These are the available Teams',
+        'teams' => $teams,
+        'code' => '200'
+    ]);
 });
 
 Route::post('/login', function (Request $request) {
