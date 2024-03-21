@@ -62,6 +62,16 @@ Status: 401 Unauthorized
 ## Teams - NOT UPDATED
 Zeigt alle vorhandene Teams an.
 
+Bevor Teams abzufragen muss du dich Authentifizieren 
+
+Beispiel:
+
+'headers' => [
+        'Authorization' => 'Bearer your_access_token_here',
+        'Accept' => 'application/json',
+    ],
+
+  
 - **URL:** `/api/teams`
 - **Methode:** GET
 - **Erfolgsantwort:**
