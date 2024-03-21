@@ -6,10 +6,21 @@ use App\Models\Category;
 use App\Models\Player;
 use Illuminate\Http\Request;
 use App\Models\Team;
+use App\Models\Venue;
 use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+
+
+    public function edit()
+    {
+        $teams = Team::all();
+        $categories = Category::all();
+        $venues = Venue::all();
+
+        return view('edit', compact('teams', 'categories', 'venues'));
+    }
     public function storeCategory(Request $request)
     {
         $request->validate([
@@ -74,4 +85,41 @@ class AdminController extends Controller
 
         return redirect()->route('edit')->with('success', 'Team erfolgreich hinzugefügt.');
     }
+
+    public function destroyTeam($id)
+    {
+        $team = Team::findOrFail($id);
+        $team->delete();
+        return redirect()->route('edit')->with('success', 'Team erfolgreich gelöscht.');
+    }
+
+    public function destroyCategory(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('edit')->with('success', 'Kategorie erfolgreich gelöscht.');
+    }
+
+    public function storeVenue(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+        ]);
+
+        Venue::create([
+            'name' => $request->name,
+            'location' => $request->location,
+        ]);
+        return redirect()->route('edit')->with('success', 'Venue erfolgreich hinzugefügt.');
+
+    }
+
+    public function destroyVenue(Venue $venue)
+    {
+        $venue->delete();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Venue erfolgreich gelöscht.');
+    }
+
 }
