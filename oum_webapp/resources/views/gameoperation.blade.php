@@ -25,33 +25,34 @@
                                 <table class="w-full whitespace-nowrap rounded-lg overflow-hidden">
                                     <thead>
                                         <tr class="bg-customColor5">
-                                            <th class="px-4 py-2 text-left">Rang</th>
-                                            <th class="px-4 py-2 text-left">Team</th>
-                                            <th class="px-4 py-2 text-left">Spiele</th>
-                                            <th class="px-4 py-2 text-left">S</th>
-                                            <th class="px-4 py-2 text-left">U</th>
-                                            <th class="px-4 py-2 text-left">N</th>
-                                            <th class="px-4 py-2 text-left">T</th>
-                                            <th class="px-4 py-2 text-left">GT</th>
-                                            <th class="px-4 py-2 text-left">TD</th>
-                                            <th class="px-4 py-2 text-left">Punkte</th>
+                                            <th class="px-4 py-2">Rang</th>
+                                            <th class="px-4 py-2">Team</th>
+                                            <th class="px-4 py-2">Spiele</th>
+                                            <th class="px-4 py-2">S</th>
+                                            <th class="px-4 py-2">U</th>
+                                            <th class="px-4 py-3">N</th>
+                                            <th class="px-4 py-2">T</th>
+                                            <th class="px-4 py-2">GT</th>
+                                            <th class="px-4 py-2">TD</th>
+                                            <th class="px-4 py-2">Punkte</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($teams as $index => $team)
-                                            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-600">
-                                                <td class="px-4 py-2">{{ $index + 1 }}</td>
-                                                <td class="px-4 py-2">{{ $team->name }}</td>
-                                                <td class="px-4 py-2">{{ $team->games }}</td>
-                                                <td class="px-4 py-2">{{ $team->wins }}</td>
-                                                <td class="px-4 py-2">{{ $team->draws }}</td>
-                                                <td class="px-4 py-2">{{ $team->loses }}</td>
-                                                <td class="px-4 py-2">{{ $team->goals }}</td>
-                                                <td class="px-4 py-2">{{ $team->goals_conceded }}</td>
-                                                <td class="px-4 py-2">{{ $team->goal_difference }}</td>
-                                                <td class="px-4 py-2 font-semibold">{{ $team->points }}</td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach($teams as $index => $team)
+                                        <tr class="bg-gray-100 @if (!$loop->last) border-b border-gray-300 @endif">
+                                            <td class="px-4 py-2 text-center">{{ $index + 1 }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->name }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->games }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->wins }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->draws }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->loses }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->goals }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->goals_conceded }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->goal_difference }}</td>
+                                            <td class="px-4 py-2 font-semibold text-center">{{ $team->points }}</td>
+                                        </tr>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -64,4 +65,12 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .border-b {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+    </style>
 </x-app-layout>
