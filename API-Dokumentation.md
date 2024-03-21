@@ -11,12 +11,14 @@ Authentifiziert einen Benutzer mit den angegebenen Anmeldeinformationen.
   - `email` (String, erforderlich): Die E-Mail-Adresse des Benutzers.
   - `password` (String, erforderlich): Das Passwort des Benutzers.
 - **Erfolgsantwort:**
-  - **Statuscode:** 200
+  - **Statuscode:** 200 OK
   - **Nachricht:** "Authentication successful"
   - **Benutzername:** "Name"
   - **Code:** "200"
+  - **Token:** "Ein JWT-Token zur Authentifizierung in weiteren Anfragen."
+
 - **Fehlerantwort:**
-  - **Statuscode:** 401
+  - **Statuscode:** 401 Unauthorized
   - **Nachricht:** "Invalid credentials"
   - **Code:** "401"
 
@@ -41,8 +43,8 @@ Status: 200 OK
 {
     "message": "Authentication successful",
     "username": "api test",
-    "code": "200"
-
+    "code": "200",
+    "token": "Bearer 4|uzpkZPYy6jb2LzpBQbeU7X5sYlM1j6Y12iTFnVhycd184b1c"
 }
 ```
 
@@ -54,11 +56,10 @@ Status: 401 Unauthorized
 {
     "message": "Invalid credentials",
     "code": "401"
-
 }
 ```
 
-## Teams 
+## Teams - NOT UPDATED
 Zeigt alle vorhandene Teams an.
 
 - **URL:** `/api/teams`
