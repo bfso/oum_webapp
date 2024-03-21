@@ -46,11 +46,6 @@ Route::middleware('api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::middleware('api')->get('/test', function () {
-    return response()->json(['message' => 'Hello, this is a test API!']);
-});
-
 Route::middleware('api')->get('/teams', function () {
     $teams = Team::all();
     return response()->json(['teams' => $teams]);
