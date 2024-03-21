@@ -13,9 +13,13 @@ Authentifiziert einen Benutzer mit den angegebenen Anmeldeinformationen.
 - **Erfolgsantwort:**
   - **Statuscode:** 200
   - **Nachricht:** "Authentication successful"
+  - **Benutzername:** "Name"
+  - **Code:** "200"
 - **Fehlerantwort:**
   - **Statuscode:** 401
   - **Nachricht:** "Invalid credentials"
+  - **Code:** "401"
+
 
 ### Beispielanfrage
 
@@ -35,7 +39,10 @@ Content-Type: application/json
 Status: 200 OK
 
 {
-    "message": "Authentication successful"
+    "message": "Authentication successful",
+    "username": "api test",
+    "code": "200"
+
 }
 ```
 
@@ -45,7 +52,9 @@ Status: 200 OK
 Status: 401 Unauthorized
 
 {
-    "message": "Invalid credentials"
+    "message": "Invalid credentials",
+    "code": "401"
+
 }
 ```
 

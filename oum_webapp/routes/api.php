@@ -55,3 +55,29 @@ Route::middleware('api')->get('/teams', function () {
     $teams = Team::all();
     return response()->json(['teams' => $teams]);
 });
+
+Route::post('/login', function (Request $request) {
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    $email = $request->email;
+    $password = $request->password;
+
+
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        $user = Auth::user();
+        return response()->json([
+            'message' => 'Authentication successful',
+            'username' => $user->name,
+            'code' => '200'
+        ], 200);
+    } else {
+        return response()->json([
+            'message' => 'Invalid credentials',
+            'code' => '401'
+        ], 401);
+    }
+    
+});
