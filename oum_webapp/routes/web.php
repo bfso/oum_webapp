@@ -21,17 +21,17 @@ use App\Models\Venue;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
 
 Route::get('/association', function () {
     return view('association');
-})->middleware(['auth', 'verified'])->name('association');
+})->name('association');
 
 
 
@@ -39,28 +39,28 @@ Route::get('/association', function () {
 Route::get('/gameoperation', function () {
     $categories = Category::pluck('name')->toArray();
     return view('gameoperation', compact('categories'));
-})->middleware(['auth', 'verified'])->name('gameoperation');
+})->name('gameoperation');
 
 
 
 
 Route::get('/history', function () {
     return view('history');
-})->middleware(['auth', 'verified'])->name('history');
+})->name('history');
 
 Route::get('/referee', function () {
     return view('referee');
-})->middleware(['auth', 'verified'])->name('referee');
+})->name('referee');
 
 Route::get('/associationmember', function () {
     return view('associationmember');
-})->middleware(['auth', 'verified'])->name('associationmember');
+})->name('associationmember');
 
 Route::get('/gameoperation', function () {
     $categories = Category::pluck('name')->toArray();
 
     return view('gameoperation', compact('categories'));
-})->middleware(['auth', 'verified'])->name('associationmember');
+})->name('associationmember');
 
 Route::middleware('auth')->group(function () {
     Route::get('/edit', [AdminController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit');
