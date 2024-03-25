@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MatchDay extends Model
 {
-    use HasFactory;
+    protected $fillable = ['date', 'venue_id']; // Füge 'date' zum $fillable-Array hinzu
+
 }

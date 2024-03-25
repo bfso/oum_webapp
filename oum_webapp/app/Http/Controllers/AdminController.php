@@ -8,12 +8,28 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\Venue;
 use Illuminate\Support\Str;
+use App\Models\Game;
+use App\Models\MatchDay;
 
 class AdminController extends Controller
 {
+    public function storeVenue(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+        ]);
+
+        Venue::create([
+            'name' => $request->name,
+            'location' => $request->location,
+        ]);
+
+        return redirect()->back()->with('success', 'Ort erfolgreich erstellt.');
+    }
 
 
-    public function edit()
+    public function index()
     {
         $teams = Team::all();
         $categories = Category::all();
@@ -113,26 +129,47 @@ class AdminController extends Controller
         return redirect()->route('edit')->with('success', 'Kategorie erfolgreich gelöscht.');
     }
 
-    public function storeVenue(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-        ]);
-
-        Venue::create([
-            'name' => $request->name,
-            'location' => $request->location,
-        ]);
-        return redirect()->route('edit')->with('success', 'Venue erfolgreich hinzugefügt.');
-
-    }
-
     public function destroyVenue(Venue $venue)
     {
         $venue->delete();
 
         return redirect()->route('admin.dashboard')->with('success', 'Venue erfolgreich gelöscht.');
+    }
+
+    public function generateMatches(Request $request)
+    {           
+        $request->validate([
+            'date' => 'required|date',
+            'venue_id' => 'required|exists:venues,id',
+            'categories' => 'required|array',
+        ]);
+
+
+        $date = $request->input('date');
+        $venueId = $request->input('venue_id');
+        $categories = $request->input('categories');
+
+        $teams = Team::whereIn('category_id', $categories)->get();
+
+        $matchDay = MatchDay::create([
+            'date' => $date,
+            'venue_id' => $venueId,
+        ]);
+
+        foreach ($teams as $homeTeam) {
+            foreach ($teams as $awayTeam) {
+                if ($homeTeam->id !== $awayTeam->id) {
+                    Game::create([
+                        'match_day_id' => $matchDay->id,
+                        'home_team_id' => $homeTeam->id,
+                        'away_team_id' => $awayTeam->id,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Spiele erfolgreich generiert.');
+
     }
 
 }
