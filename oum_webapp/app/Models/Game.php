@@ -11,15 +11,6 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['match_day_id', 'home_team_id', 'away_team_id', 'home_team_score', 'away_team_score']; // Füge 'match_day_id' zum $fillable-Array hinzu
+    protected $fillable = ['match_day_id', 'team_1_id', 'team_2_id', 'team_1_score', 'team_2_score'];
 
-    public function homeTeam()
-    {
-        return $this->belongsTo(Team::class, 'home_team_id');
-    }
-
-    public function awayTeam()
-    {
-        return $this->belongsTo(Team::class, 'away_team_id');
-    }
 }

@@ -137,39 +137,67 @@ class AdminController extends Controller
     }
 
     public function generateMatches(Request $request)
-    {           
+    {
         $request->validate([
             'date' => 'required|date',
             'venue_id' => 'required|exists:venues,id',
             'categories' => 'required|array',
         ]);
 
-
         $date = $request->input('date');
         $venueId = $request->input('venue_id');
         $categories = $request->input('categories');
 
-        $teams = Team::whereIn('category_id', $categories)->get();
+        foreach ($categories as $categoryId) {
+            $teams = Team::where('category_id', $categoryId)->get();
+            $teamsCount = $teams->count();
 
-        $matchDay = MatchDay::create([
-            'date' => $date,
-            'venue_id' => $venueId,
-        ]);
+            if ($teamsCount < 2) {
+                continue;
+            }
 
-        foreach ($teams as $homeTeam) {
-            foreach ($teams as $awayTeam) {
-                if ($homeTeam->id !== $awayTeam->id) {
+            $matchDay = MatchDay::create([
+                'date' => $date,
+                'venue_id' => $venueId,
+                'category_id' => $categoryId,
+            ]);
+
+            // Erstelle Spiele für jedes Team
+            for ($i = 0; $i < $teamsCount; $i++) {
+                for ($j = $i + 1; $j < $teamsCount; $j++) {
                     Game::create([
                         'match_day_id' => $matchDay->id,
-                        'home_team_id' => $homeTeam->id,
-                        'away_team_id' => $awayTeam->id,
+                        'team_1_id' => $teams[$i]->id,
+                        'team_2_id' => $teams[$j]->id,
                     ]);
                 }
             }
         }
 
         return redirect()->back()->with('success', 'Spiele erfolgreich generiert.');
-
     }
+
+
+    private function gameExists($matchDayId, $team1Id, $team2Id)
+    {
+        return Game::where('match_day_id', $matchDayId)
+            ->where(function ($query) use ($team1Id, $team2Id) {
+                $query->where(function ($q) use ($team1Id, $team2Id) {
+                    $q->where('team_1_id', $team1Id)
+                        ->where('team_2_id', $team2Id);
+                })
+                    ->orWhere(function ($q) use ($team1Id, $team2Id) {
+                        $q->where('team_1_id', $team2Id)
+                            ->where('team_2_id', $team1Id);
+                    });
+            })
+            ->exists();
+    }
+
+
+
+
+
+
 
 }
