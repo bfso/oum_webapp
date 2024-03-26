@@ -182,18 +182,17 @@ class AdminController extends Controller
                 }
 
                 $matches = [];
-                $firstHalfReversed = $firstHalf->reverse();
 
-                $length = count($firstHalfReversed);
-                for ($i = 0; $i < count($firstHalfReversed); $i++) {
+                $lastItem = $firstHalf->pop();
+                $firstHalf->prepend($lastItem);
+                
+                for ($i = 0; $i < count($firstHalf); $i++) {
                     $matches[] = [
-                        'team1' => $firstHalfReversed[($length - 1) - $i],
+                        'team1' => $firstHalf[$i],
                         'team2' => $secondHalf[$i + 3]
                     ];
                 }
-                
-                // dd($matches);
-                
+
                 foreach ($matches as $match) {
                     Game::create([
                         'match_day_id' => $matchDay->id,
