@@ -15,9 +15,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                     <!-- Liste der Links für verschiedene Ligen -->
-                    <div class="flex space-x-4">
+                    <div class="flex space-x-4 mb-4">
                         @foreach($categories as $category)
-                            <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-blue-500 hover:text-blue-700">{{ ucfirst($category) }}</a>
+                            <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-red-500 hover:text-red-700">{{ ucfirst($category) }}</a>
                         @endforeach
                     </div>
                     
@@ -25,39 +25,38 @@
                         <!-- Anzeige der Daten für die ausgewählte Liga -->
                         @if($teams->count() > 0)
                             <!-- Anzeige der Teams in einer Tabelle -->
-                            <div class="mt-4">
-                                <table class="table-auto">
+                            <div class="overflow-x-auto">
+                                <table class="w-full whitespace-nowrap rounded-lg overflow-hidden">
                                     <thead>
-                                        <tr>
-                                            <th>Rang</th>
-                                            <th>Team</th>
-                                            <th>Spiele</th>
-                                            <th>S</th>
-                                            <th>U</th>
-                                            <th>N</th>
-                                            <th>T</th>
-                                            <th>GT</th>
-                                            <th>TD</th>
-                                            <th>Punkte</th>
-                                            <!-- Weitere Spalten, falls benötigt -->
+                                        <tr class="bg-customColor5">
+                                            <th class="px-4 py-2">Rang</th>
+                                            <th class="px-4 py-2">Team</th>
+                                            <th class="px-4 py-2">Spiele</th>
+                                            <th class="px-4 py-2">S</th>
+                                            <th class="px-4 py-2">U</th>
+                                            <th class="px-4 py-3">N</th>
+                                            <th class="px-4 py-2">T</th>
+                                            <th class="px-4 py-2">GT</th>
+                                            <th class="px-4 py-2">TD</th>
+                                            <th class="px-4 py-2">Punkte</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($teams as $index => $team)
-                                            <tr>
-                                                <td>{{ $index + 1 }}</td>
-                                                <td>{{ $team->name }}</td>
-                                                <td>{{ $team->games }}</td>
-                                                <td>{{ $team->wins }}</td>
-                                                <td>{{ $team->draws }}</td>
-                                                <td>{{ $team->loses }}</td>                                             
-                                                <td>{{ $team->goals }}</td>
-                                                <td>{{ $team->goals_conceded }}</td>
-                                                <td>{{ $team->goal_difference }}</td>
-                                                <td>{{ $team->points }}</td>
-                                                <!-- Weitere Spalten, falls benötigt -->
-                                            </tr>
-                                        @endforeach
+                                    @foreach($teams as $index => $team)
+                                        <tr class="bg-gray-100 @if (!$loop->last) border-b border-gray-300 @endif">
+                                            <td class="px-4 py-2 text-center">{{ $index + 1 }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->name }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->games }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->wins }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->draws }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->loses }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->goals }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->goals_conceded }}</td>
+                                            <td class="px-4 py-2 text-center">{{ $team->goal_difference }}</td>
+                                            <td class="px-4 py-2 font-semibold text-center">{{ $team->points }}</td>
+                                        </tr>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -70,16 +69,12 @@
             </div>
         </div>
     </div>
-    <footer>
-    <div>
-    @include('layouts.footer')
-    </div>
-    </footer>
 
     <style>
-        #header {
-    border-bottom: 1px solid #ddd; 
-    padding-bottom: 10px; 
+        .border-b {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
 }
+
     </style>
 </x-app-layout>
