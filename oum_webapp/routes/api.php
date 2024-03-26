@@ -1,9 +1,8 @@
 <?php
 
 use App\Models\Game;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Result;
+//use App\Models\Result;
 use App\Http\Controllers\Api\PlayerController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TeamController;
@@ -50,23 +49,6 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('/venue/{id}', [VenueController::class, 'show']);
     
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
