@@ -184,10 +184,10 @@ class AdminController extends Controller
                 $matches = [];
                 $firstHalfReversed = $firstHalf->reverse();
 
-
+                $length = count($firstHalfReversed);
                 for ($i = 0; $i < count($firstHalfReversed); $i++) {
                     $matches[] = [
-                        'team1' => $firstHalfReversed[$i],
+                        'team1' => $firstHalfReversed[($length - 1) - $i],
                         'team2' => $secondHalf[$i + 3]
                     ];
                 }
