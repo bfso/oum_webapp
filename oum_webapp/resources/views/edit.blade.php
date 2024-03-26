@@ -259,6 +259,68 @@
 
             <br>
 
+            <section id="ortHinzufügen"></section>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <form method="POST" action="{{ route('admin.venues.store') }}">
+                            @csrf
+                            <div>
+                                <label for="name">Name des Ortes:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div>
+                                <label for="location">Standort des Gebäudes:</label>
+                                <input type="text" id="location" name="location" required>
+                            </div>
+                            <button type="submit">Ort erstellen</button>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <section id="ortHinzufügen"></section>
+
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <form method="POST" action="{{ route('admin.generateMatches') }}">
+                        @csrf
+                        <label for="date">Datum:</label>
+                        <input type="date" id="date" name="date" required>
+                        <br>
+                        <label for="venue">Veranstaltungsort:</label>
+                        <select id="venue" name="venue_id" required>
+                            @foreach($venues as $venue)
+                                <option value="{{ $venue->id }}">{{ $venue->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                        <label for="categories">Kategorien:</label>
+                        <select id="categories" name="categories[]" multiple required>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                        <button type="submit">Spiele generieren</button>
+                    </form>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
         </div>
         <br>
                     <br>

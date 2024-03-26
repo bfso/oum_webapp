@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matches', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('match_day_id');
-            $table->unsignedBigInteger('home_team_id');
-            $table->unsignedBigInteger('away_team_id');
-            $table->integer('home_team_score')->nullable();
-            $table->integer('away_team_score')->nullable();
+            $table->unsignedBigInteger('team_1_id');
+            $table->unsignedBigInteger('team_2_id');
+            $table->integer('team_1_score')->nullable();
+            $table->integer('team_2_score')->nullable();
             $table->timestamps();
         
             $table->foreign('match_day_id')->references('id')->on('match_days')->onDelete('cascade');
-            $table->foreign('home_team_id')->references('id')->on('teams')->onDelete('cascade');
-            $table->foreign('away_team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('team_1_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('team_2_id')->references('id')->on('teams')->onDelete('cascade');
         });
-        
     }
 
     /**
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('matches');
+        Schema::dropIfExists('match_days');
     }
 };

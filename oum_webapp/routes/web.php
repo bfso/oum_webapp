@@ -8,6 +8,9 @@ use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\AdminController;
 use App\Models\Category;
 use App\Models\Venue;
+use App\Models\Match;
+use App\Models\MatchDay;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +66,7 @@ Route::get('/gameoperation', function () {
 })->name('associationmember');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/edit', [AdminController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit');
+    Route::get('/edit', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -71,11 +74,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/players', [AdminController::class, 'storePlayer'])->name('admin.players.store');
     Route::post('/teams', [AdminController::class, 'storeTeam'])->name('admin.teams.store');
     Route::get('/gameoperation/{league}', [GameOperationController::class, 'index'])->name('gameoperation');
+    Route::post('/venues', [AdminController::class, 'storeVenue'])->name('admin.venues.store');
+    Route::post('/generateMatches', [AdminController::class, 'generateMatches'])->name('admin.generateMatches');
 
     
     Route::delete('/teams/{id}', [AdminController::class, 'destroyTeam'])->name('admin.teams.destroy');
     Route::delete('/categories/{category}', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
-    Route::post('/venues', [AdminController::class, 'storeVenue'])->name('admin.venues.store');
     Route::delete('/venues/{venue}', [AdminController::class, 'destroyVenue'])->name('admin.venues.destroy');
 
 });
