@@ -25,7 +25,7 @@ Route::post('v1/login', [AuthController::class, 'login']);
 
 
 Route::middleware('auth:sanctum')->get('/v1/players', [PlayerController::class, 'index']);
-Route::middleware('auth:sanctum')->get('/v1/players/{id}', [PlayerController::class, 'show']);
+Route::middleware('auth:sanctum')->get('/v1/player/{id}', [PlayerController::class, 'show']);
 
 
 Route::middleware('auth:sanctum')->get('/v1/teams', [TeamController::class, 'index']);

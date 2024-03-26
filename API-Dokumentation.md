@@ -2,188 +2,330 @@
 
 Diese API v1 bietet Zugriff auf verschiedene Daten für autorisierte Benutzer.
 
-## Authentifizierung
+## Login
 
-POST /api/v1/login
+Authentifiziert einen Benutzer und gibt ein Zugriffstoken zurück.
 
-Authentifiziert Benutzer und gibt einen Token zurück.
+- **URL**
+  `/api/v1/login`
 
-**Request:**
-- Method: POST
-- Endpoint: /api/v1/login
-- Headers: 
-  - Content-Type: application/json
-- Body:
-``` json
+- **Methoden**
+  `POST`
+
+- **Authentifizierung erforderlich**
+  Nein
+
+- **Datenparameter**
+  | Parameter | Beschreibung |
+  |------------|-----------------------|
+  | email | Die E-Mail-Adresse des Benutzers (erforderlich) |
+  | password | Das Passwort des Benutzers (erforderlich) |
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Authentication successful",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "username": "Benutzername",
+      "code": 200
+    }
+    ```
+
+- **Fehlerrantworten**
+
+  - **Statuscode:** 401 Unauthorized
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Invalid credentials",
+      "code": 401
+    }
+    ```
+
+- **Beispielanforderung**
+
+  ```http
+  POST /api/v1/login HTTP/1.1
+  Host: example.com
+  Content-Type: application/json
+
   {
-    "email": "user@example.com",
-    "password": "password"
+    "email": "benutzer@example.com",
+    "password": "passwort123"
   }
-```
+  ```
 
-**Response (bei erfolgreicher Authentifizierung):**
-- Status: 200 OK
-- Body:
-
-``` json
+- **Beispielantwort:**
+  ```json
   {
     "message": "Authentication successful",
-    "token": "<user_token>",
-    "username": "<username>",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "username": "Benutzername",
     "code": 200
   }
-```
-**Response (bei fehlgeschlagener Authentifizierung):**
-- Status: 401 Unauthorized
-- Body:
-``` json
-  {
-    "message": "Invalid credentials",
-    "code": 401
-  }
-```
-## Teams
-
-GET /api/v1/teams
-
-Listet alle verfügbaren Teams auf.
-
-**Authorization:**
-- Erfordert einen gültigen Token.
-
-***Request:**
-- Method: GET
-- Endpoint: /api/v1/teams
-
-**Response:**
-- Status: 200 OK
-- Body:
-``` json
-  {
-    "message": "These are the available Teams",
-    "teams": [
-      {
-            "id": 1,
-            "name": "Naters",
-            "category_id": 1,
-            "games": 0,
-            "wins": 0,
-            "draws": 0,
-            "loses": 0,
-            "points": 0,
-            "goals": 0,
-            "goals_conceded": 0,
-            "created_at": "2024-03-25T10:02:54.000000Z",
-            "updated_at": "2024-03-25T10:02:54.000000Z"
-      },
-      {
-            "id": 2,
-            "name": "Brig",
-            "category_id": 1,
-            "games": 0,
-            "wins": 0,
-            "draws": 0,
-            "loses": 0,
-            "points": 0,
-            "goals": 0,
-            "goals_conceded": 0,
-            "created_at": "2024-03-25T10:02:54.000000Z",
-            "updated_at": "2024-03-25T10:02:54.000000Z"
-      }
-    ],
-    "code": 200
-  }
-```
+  ```
 
 ## Spieler
 
-GET /api/v1/players
+Bietet Zugriff auf Spielerdaten.
+
+### Spieler auflisten
 
 Listet alle verfügbaren Spieler auf.
 
-****Authorization:**
-- Erfordert einen gültigen Token.
+- **URL**
+  `/api/v1/players`
 
-**Request:**
-- Method: GET
-- Endpoint: /api/v1/players
+- **Methoden**
+  `GET`
 
-**Response:**
-- Status: 200 OK
-- Body:
-```json
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+
+- **Beispielantwort**
+  ```json
   {
     "message": "These are the available Players",
     "players": [
       {
-            "id": 1,
-            "first_name": "mario",
-            "last_name": "bozic",
-            "player_nr": 9,
-            "license_nr": "YNvdtvilqG",
-            "image": "1711360989.png",
-            "playing_for": 1,
-            "created_at": "2024-03-25T10:03:09.000000Z",
-            "updated_at": "2024-03-25T10:03:09.000000Z"
+        "id": 1,
+        "first_name": "Mario",
+        "last_name": "Bozic",
+        "player_nr": 9,
+        "license_nr": "1MU3Orvl5R",
+        "image": "Mario_Bozic_1MU3Orvl5R.png",
+        "playing_for": 1,
+        "created_at": "2024-03-26T13:36:32.000000Z",
+        "updated_at": "2024-03-26T13:36:32.000000Z"
       },
-      {
-            "id": 2,
-            "first_name": "luan",
-            "last_name": "asani",
-            "player_nr": 11,
-            "license_nr": "LeOTlK0cZU",
-            "image": "1711361038.png",
-            "playing_for": 1,
-            "created_at": "2024-03-25T10:03:58.000000Z",
-            "updated_at": "2024-03-25T10:03:58.000000Z"
-      }
+      { ... }
     ],
     "code": 200
   }
   ```
 
-GET /v1/players/{id}
+### Spieler anzeigen
 
-Ruft Informationen über einen bestimmten Spieler ab.
+Zeigt die Daten eines einzelnen Spielers an.
 
-**Authorization:**
-- Erfordert einen gültigen Token.
+- **URL**
+  `/api/v1/player/{id}`
 
-**Request:**
-- Method: GET
-- Endpoint: /v1/players/{id}
-  - {id}: Die ID des gewünschten Spielers.
+- **Methoden**
+  `GET`
 
-**Response (bei gefundenem Spieler):**
-- Status: 200 OK
-- Body:
-``` json
-  {
-    "message": "Player found",
-    "player": {
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Pfadparameter**
+  | Parameter | Beschreibung |
+  |------------|---------------------|
+  | id | Die ID des Spielers (erforderlich) |
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Player found",
+      "player": {
         "id": 1,
-        "first_name": "mario",
-        "last_name": "bozic",
+        "first_name": "Mario",
+        "last_name": "Bozic",
         "player_nr": 9,
-        "license_nr": "YNvdtvilqG",
-        "image": "1711360989.png",
+        "license_nr": "1MU3Orvl5R",
+        "image": "Mario_Bozic_1MU3Orvl5R.png",
         "playing_for": 1,
-        "created_at": "2024-03-25T10:03:09.000000Z",
-        "updated_at": "2024-03-25T10:03:09.000000Z"
-    },
+        "created_at": "2024-03-26T13:36:32.000000Z",
+        "updated_at": "2024-03-26T13:36:32.000000Z"
+      },
+      "code": 200
+    }
+    ```
+
+- **Fehlerrantworten**
+
+  - **Statuscode:** 404 Not Found
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Player not found",
+      "code": 404
+    }
+    ```
+
+## Teams
+
+Bietet Zugriff auf Teamdaten.
+
+### Teams auflisten
+
+Listet alle verfügbaren Teams auf.
+
+- **URL**
+  `/api/v1/teams`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "These are the available Teams",
+      "teams": [
+        {
+          "id": 1,
+          "name": "Naters",
+          "category_id": 1,
+          "games": 4,
+          "wins": 3,
+          "draws": 0,
+          "loses": 1,
+          "points": 9,
+          "goals": 16,
+          "goals_conceded": 10,
+          "created_at": "2024-03-26T11:41:17.000000Z",
+          "updated_at": "2024-03-26T12:31:54.000000Z"
+        },
+        { ... }
+      ],
+      "code": 200
+    }
+    ```
+
+### Team anzeigen
+
+Zeigt die Daten eines einzelnen Teams an.
+
+- **URL**
+  `/api/v1/team/{id}`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Pfadparameter**
+  | Parameter | Beschreibung |
+  |------------|---------------------|
+  | id | Die ID des Teams (erforderlich) |
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Team found",
+      "team": {
+        "id": 1,
+        "name": "Naters",
+        "category_id": 1,
+        "games": 4,
+        "wins": 3,
+        "draws": 0,
+        "loses": 1,
+        "points": 9,
+        "goals": 16,
+        "goals_conceded": 10,
+        "created_at": "2024-03-26T11:41:17.000000Z",
+        "updated_at": "2024-03-26T12:31:54.000000Z"
+      },
+      "code": 200
+    }
+    ```
+
+- **Fehlerrantworten**
+
+  - **Statuscode:** 404 Not Found
+  - **Beispielinhalt:**
+
+    ```json
+    {
+      "message": "Team not found",
+      "code": 404
+    }
+    ```
+
+## Spielresultat aktualisieren
+
+Aktualisiert das Ergebnis eines Spiels und aktualisiert die Teamstatistiken entsprechend.
+
+- **URL**
+  `/api/v1/games/{id}/result`
+
+- **Methoden**
+  `POST`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Pfadparameter**
+  | Parameter | Beschreibung |
+  |------------|---------------------|
+  | id | Die ID des Spiels (erforderlich) |
+
+- **Datenparameter**
+  | Parameter | Beschreibung |
+  |------------|-------------------------|
+  | team_1_score | Die Tore des ersten Teams (erforderlich) |
+  | team_2_score | Die Tore des zweiten Teams (erforderlich) |
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Result updated successfully and teams updated",
+      "code": 200
+    }
+    ```
+
+- **Fehlerrantworten**
+
+  - **Statuscode:** 404 Not Found
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Game not found",
+      "code": 404
+    }
+    ```
+
+- **Beispielanforderung**
+
+  ```http
+  POST /api/v1/games/{id}/result HTTP/1.1
+  Host: example.com
+  Content-Type: application/json
+
+  {
+    "team_1_score": 3,
+    "team_2_score": 2
+  }
+  ```
+
+- **Beispielantwort:**
+
+  ```json
+  {
+    "message": "Ergebnis erfolgreich aktualisiert und Teams aktualisiert",
     "code": 200
   }
-
-Response (bei nicht gefundenem Spieler):
-- Status: 404 Not Found
-- Body:
-  {
-    "message": "Player not found",
-    "code": 404
-  }
-```
-
-
-#
-
-*Das ist die Dokumentation für die MyAuthApp API v1. Bei weiteren Fragen oder Anpassungswünschen stehe ich gerne zur Verfügung.*
+  ```
