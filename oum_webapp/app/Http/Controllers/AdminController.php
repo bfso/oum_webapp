@@ -148,34 +148,75 @@ class AdminController extends Controller
         $venueId = $request->input('venue_id');
         $categories = $request->input('categories');
 
-        foreach ($categories as $categoryId) {
-            $teams = Team::where('category_id', $categoryId)->get();
-            $teamsCount = $teams->count();
+        $matchDay = MatchDay::create([
+            'date' => $date,
+            'venue_id' => $venueId,
+        ]);
 
-            if ($teamsCount < 2) {
-                continue;
-            }
+        foreach ($categories as $category) {
+            $teams = Team::where('category_id', $category)->get();
 
-            $matchDay = MatchDay::create([
-                'date' => $date,
-                'venue_id' => $venueId,
-                'category_id' => $categoryId,
-            ]);
+            $teams = $teams->shuffle();
 
-            // Erstelle Spiele für jedes Team
-            for ($i = 0; $i < $teamsCount; $i++) {
-                for ($j = $i + 1; $j < $teamsCount; $j++) {
+            $isEven = $teams->count() % 2 === 0;
+
+            if ($isEven) {
+
+                $halfCount = $teams->count() / 2;
+                $firstHalf = $teams->slice(0, $halfCount);
+                $secondHalf = $teams->slice($halfCount);
+
+                for ($i = 0; $i < count($firstHalf); $i++) {
+                    $matches[] = [
+                        'team1' => $firstHalf[$i],
+                        'team2' => $secondHalf[$i + 3]
+                    ];
+                }
+
+                foreach ($matches as $match) {
                     Game::create([
                         'match_day_id' => $matchDay->id,
-                        'team_1_id' => $teams[$i]->id,
-                        'team_2_id' => $teams[$j]->id,
+                        'team_1_id' => $match['team1']->id,
+                        'team_2_id' => $match['team2']->id,
                     ]);
                 }
+
+                $matches = [];
+                $firstHalfReversed = $firstHalf->reverse();
+
+
+                for ($i = 0; $i < count($firstHalfReversed); $i++) {
+                    $matches[] = [
+                        'team1' => $firstHalfReversed[$i],
+                        'team2' => $secondHalf[$i + 3]
+                    ];
+                }
+                
+                // dd($matches);
+                
+                foreach ($matches as $match) {
+                    Game::create([
+                        'match_day_id' => $matchDay->id,
+                        'team_1_id' => $match['team1']->id,
+                        'team_2_id' => $match['team2']->id,
+                    ]);
+                }
+
+            } else {
+
+                $categoryName = Category::find($category)->name;
+                return redirect()->back()->with('error', 'Ungerade Anzahl an Teams in Kategorie:' . ' ' . $categoryName);
+
             }
+
         }
 
-        return redirect()->back()->with('success', 'Spiele erfolgreich generiert.');
+        return redirect()->back()->with('success', 'Spieltag erfolgreich erstellt.');
     }
+
+
+
+
 
 
     private function gameExists($matchDayId, $team1Id, $team2Id)
