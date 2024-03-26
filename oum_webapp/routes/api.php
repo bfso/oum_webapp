@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\TeamController;
 use App\Http\Controllers\Api\GameResultController;
 use App\Http\Controllers\Api\GameController;
+use App\Http\Controllers\Api\MatchDayController;
+use App\Http\Controllers\Api\VenueController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,23 +23,38 @@ use App\Http\Controllers\Api\GameController;
 |
 */
 
+Route::post('/v1/login', [AuthController::class, 'login']);
 
-Route::post('v1/login', [AuthController::class, 'login']);
-
-
-Route::middleware('auth:sanctum')->get('/v1/players', [PlayerController::class, 'index']);
-Route::middleware('auth:sanctum')->get('/v1/player/{id}', [PlayerController::class, 'show']);
+Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
 
 
-Route::middleware('auth:sanctum')->get('/v1/teams', [TeamController::class, 'index']);
-Route::middleware('auth:sanctum')->get('/v1/team/{id}', [TeamController::class, 'show']);
+    Route::get('/players', [PlayerController::class, 'index']);
+    Route::get('/player/{id}', [PlayerController::class, 'show']);
 
 
-Route::middleware('auth:sanctum')->post('/v1/games/{id}/result', [GameResultController::class, 'updateResult']);
+    Route::get('/teams', [TeamController::class, 'index']);
+    Route::get('/team/{id}', [TeamController::class, 'show']);
 
 
-Route::middleware('auth:sanctum')->get('/v1/unplayed-games', [GameController::class,'getUnplayedGames']);
-Route::middleware('auth:sanctum')->get('/v1/played-games', [GameController::class,'getPlayedGames']);
+    Route::post('/games/{id}/result', [GameResultController::class, 'updateResult']);
+
+
+    Route::get('/unplayed-games', [GameController::class, 'getUnplayedGames']);
+    Route::get('/played-games', [GameController::class, 'getPlayedGames']);
+
+
+    Route::get('/match-days', [MatchDayController::class, 'index']);
+    Route::get('/match-day/{id}', [MatchDayController::class, 'show']);
+
+    Route::get('/venues', [VenueController::class, 'index']);
+    Route::get('/venue/{id}', [VenueController::class, 'show']);
+    
+});
+
+
+
+
+
 
 
 

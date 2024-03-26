@@ -325,7 +325,245 @@ Aktualisiert das Ergebnis eines Spiels und aktualisiert die Teamstatistiken ents
 
   ```json
   {
-    "message": "Ergebnis erfolgreich aktualisiert und Teams aktualisiert",
+    "message": "Result updated successfully and teams updated",
     "code": 200
   }
   ```
+
+## Ungespielte Spiele abrufen
+
+Ruft alle ungespielten Spiele ab.
+
+- **URL**
+  `/api/v1/unplayed-games`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Unplayed games retrieved successfully",
+      "unplayed_games": [
+        {
+          "id": 28,
+          "match_day_id": 6,
+          "team_1_id": 1,
+          "team_2_id": 7,
+          "team_1_score": null,
+          "team_2_score": null,
+          "created_at": "2024-03-26T14:20:24.000000Z",
+          "updated_at": "2024-03-26T14:20:24.000000Z"
+        },
+        { ... }
+      ],
+      "code": 200
+    }
+    ```
+
+## Gespielte Spiele abrufen
+
+Ruft alle gespielten Spiele ab.
+
+- **URL**
+  `/api/v1/played-games`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+
+    ```json
+    {
+      "message": "Played games retrieved successfully",
+      "played_games": [
+        {
+          "id": 16,
+          "match_day_id": 4,
+          "team_1_id": 5,
+          "team_2_id": 4,
+          "team_1_score": 2,
+          "team_2_score": 2,
+          "created_at": "2024-03-26T11:57:20.000000Z",
+          "updated_at": "2024-03-26T12:01:22.000000Z"
+        },
+        { ... }
+      ],
+      "code": 200
+    }
+    ```
+
+## Spieltage abrufen
+
+Ruft alle Spieltage ab.
+
+- **URL**
+  `/api/v1/match-days`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Match days retrieved successfully",
+      "match_days": [
+        {
+          "id": 4,
+          "date": "2024-03-08",
+          "venue_id": 1,
+          "created_at": "2024-03-26T11:57:20.000000Z",
+          "updated_at": "2024-03-26T11:57:20.000000Z"
+        },
+        { ... }
+      ],
+      "code": 200
+    }
+    ```
+
+## Spieltag anzeigen
+
+Zeigt die Daten eines einzelnen Spieltags an.
+
+- **URL**
+  `/api/v1/match-day/{id}`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Pfadparameter**
+  | Parameter | Beschreibung |
+  |------------|---------------------|
+  | id | Die ID des Spieltags (erforderlich) |
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Match day retrieved successfully",
+      "match_day": {
+        "id": 5,
+        "date": "2024-03-31",
+        "venue_id": 1,
+        "created_at": "2024-03-26T12:30:42.000000Z",
+        "updated_at": "2024-03-26T12:30:42.000000Z"
+      },
+      "code": 200
+    }
+    ```
+
+- **Fehlerrantworten**
+
+  - **Statuscode:** 404 Not Found
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Match day not found",
+      "code": 404
+    }
+    ```
+
+## Veranstaltungsorte abrufen
+
+Ruft alle Veranstaltungsorte ab.
+
+- **URL**
+  `/api/v1/venues`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Ja
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Venues retrieved successfully",
+      "venues": [
+        {
+          "id": 1,
+          "name": "Glis",
+          "location": "strasse 1",
+          "created_at": "2024-03-26T11:43:06.000000Z",
+          "updated_at": "2024-03-26T11:43:06.000000Z"
+        },
+        { ... }
+      ],
+      "code": 200
+    }
+    ```
+
+## Veranstaltungsort anzeigen
+
+Zeigt die Daten eines einzelnen Veranstaltungsorts an.
+
+- **URL**
+  `/api/v1/venues/{id}`
+
+- **Methoden**
+  `GET`
+
+- **Authentifizierung erforderlich**
+  Nein
+
+- **Pfadparameter**
+  | Parameter | Beschreibung |
+  |------------|---------------------|
+  | id | Die ID des Veranstaltungsorts (erforderlich) |
+
+- **Erfolgsantwort**
+
+  - **Statuscode:** 200 OK
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Venue found",
+      "venue": {
+        "id": 1,
+        "name": "zagreb",
+        "location": "strasse 1",
+        "created_at": "2024-03-26T11:43:06.000000Z",
+        "updated_at": "2024-03-26T11:43:06.000000Z"
+      },
+      "code": 200
+    }
+    ```
+
+- **Fehlerrantworten**
+
+  - **Statuscode:** 404 Not Found
+  - **Beispielinhalt:**
+    ```json
+    {
+      "message": "Venue not found",
+      "code": 404
+    }
+    ```
+
