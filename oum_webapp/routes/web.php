@@ -5,6 +5,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Models\Category;
+use App\Http\Controllers\AdminDashboard\CategoryController;
+use App\Http\Controllers\AdminDashboard\MatchDayController;
+use App\Http\Controllers\AdminDashboard\PlayerController;
+use App\Http\Controllers\AdminDashboard\TeamController;
+use App\Http\Controllers\AdminDashboard\VenueController;
 
 
 
@@ -77,18 +82,18 @@ Route::middleware('auth')->group(function () {
 
 
     // Admin dashboard
-    Route::post('/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
-    Route::delete('/categories/{category}', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
+    Route::post('/categories', [CategoryController::class, 'storeCategory'])->name('admin.categories.store');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroyCategory'])->name('admin.categories.destroy');
 
-    Route::post('/teams', [AdminController::class, 'storeTeam'])->name('admin.teams.store');
-    Route::delete('/teams/{id}', [AdminController::class, 'destroyTeam'])->name('admin.teams.destroy');
+    Route::post('/teams', [TeamController::class, 'storeTeam'])->name('admin.teams.store');
+    Route::delete('/teams/{id}', [TeamController::class, 'destroyTeam'])->name('admin.teams.destroy');
 
-    Route::post('/players', [AdminController::class, 'storePlayer'])->name('admin.players.store');
+    Route::post('/players', [PlayerController::class, 'storePlayer'])->name('admin.players.store');
 
-    Route::post('/venues', [AdminController::class, 'storeVenue'])->name('admin.venues.store');
-    Route::delete('/venues/{venue}', [AdminController::class, 'destroyVenue'])->name('admin.venues.destroy');
+    Route::post('/venues', [VenueController::class, 'storeVenue'])->name('admin.venues.store');
+    Route::delete('/venues/{venue}', [VenueController::class, 'destroyVenue'])->name('admin.venues.destroy');
 
-    Route::post('/generateMatches', [AdminController::class, 'generateMatches'])->name('admin.generateMatches');
+    Route::post('/generateMatches', [MatchDayController::class, 'generateMatches'])->name('admin.generateMatches');
 
 });
 

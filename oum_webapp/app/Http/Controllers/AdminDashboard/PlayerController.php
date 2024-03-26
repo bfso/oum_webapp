@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Player;
+use Illuminate\Support\Str;
+
 
 class PlayerController extends Controller
 {
