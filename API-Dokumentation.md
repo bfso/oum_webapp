@@ -262,7 +262,7 @@ Zeigt die Daten eines einzelnen Teams an.
     }
     ```
 
-## Spielresultat aktualisieren
+## Spielresultat eintragen
 
 Aktualisiert das Ergebnis eines Spiels und aktualisiert die Teamstatistiken entsprechend.
 
