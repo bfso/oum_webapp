@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
+   <x-slot name="header">
         <div id="header">
             <link href='https://fonts.googleapis.com/css?family=Black+Ops+One|Luckiest+Guy|Sonsie+One|Shojumaru&effect=3d|3d-float|anaglyph|brick-sign|canvas-print|
                 crackle|decaying|destruction|distressed|distressed-wood|emboss|fire|fire-animation|fragile|grass|ice|mitosis|neon|outline|putting-green|
@@ -76,5 +76,9 @@
     border-bottom-style: solid;
 }
 
+#header {
+    border-bottom: 1px solid #ddd; 
+    padding-bottom: 10px; 
+}
     </style>
 </x-app-layout>

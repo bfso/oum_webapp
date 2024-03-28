@@ -31,17 +31,20 @@
                 
 
 
-              
-                            <div class="d-flex justify-content-between">
-                            <a href="#kategorieHinzufügen" class="btn btn-danger">Kategorien Hinzufügen</a>
-                            <a href="#kategorieVerwalten" class="btn btn-danger">Kategorien Verwalten</a>
-                            <a href="#teamHinzufügen" class="btn btn-danger">Team Hinzufügen</a>
-                            <a href="#teamVerwalten" class="btn btn-danger">Team Verwalten</a>
-                            <a href="#spielerHinzufügen" class="btn btn-danger">Spieler Hinzufügen</a>
-                            </div>
+                                                    
+                                        <div class="flex gap-4">
+                                            <a href="#kategorieHinzufügen" class="btn btn-danger">Kategorien Hinzufügen</a>
+                                            <a href="#kategorieVerwalten" class="btn btn-danger">Kategorien Verwalten</a>
+                                            <a href="#teamHinzufügen" class="btn btn-danger">Team Hinzufügen</a>
+                                            <a href="#teamVerwalten" class="btn btn-danger">Team Verwalten</a>
+                                            <a href="#spielerHinzufügen" class="btn btn-danger">Spieler Hinzufügen</a>
+                                            <a href="#ortHinzufügen" class="btn btn-danger">Ort erstellen</a>
+                                            <a href="#ortHinzufügen" class="btn btn-danger">Ort hinzufügen</a>
+                                        </div>
 
 
 
+    
 
 
 
@@ -258,66 +261,73 @@
             </div>
 
             <br>
-
-            <section id="ortHinzufügen"></section>
-
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        <form method="POST" action="{{ route('admin.venues.store') }}">
-                            @csrf
-                            <div>
-                                <label for="name">Name des Ortes:</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div>
-                                <label for="location">Standort des Gebäudes:</label>
-                                <input type="text" id="location" name="location" required>
-                            </div>
-                            <button type="submit">Ort erstellen</button>
-                        </form>
-
-
-                    </div>
+ 
+            <section id="ortHinzufügen" class="py-12">
+                    <div class="p- text-gray-900 dark:text-gray-100">
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Ort erstellen:
+                            </h2>
+                                                                                                                   <br> 
+                                                                                                                      <br>
+            <form method="POST" action="{{ route('admin.venues.store') }}">
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name des Ortes:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
                 </div>
-
-            </div>
-
-            <br>
-
-            <section id="ortHinzufügen"></section>
-
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form method="POST" action="{{ route('admin.generateMatches') }}">
-                        @csrf
-                        <label for="date">Datum:</label>
-                        <input type="date" id="date" name="date" required>
-                        <br>
-                        <label for="venue">Veranstaltungsort:</label>
-                        <select id="venue" name="venue_id" required>
-                            @foreach($venues as $venue)
-                                <option value="{{ $venue->id }}">{{ $venue->name }}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        <label for="categories">Kategorien:</label>
-                        <select id="categories" name="categories[]" multiple required>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        <button type="submit">Spiele generieren</button>
-                    </form>
-
-
-
-                    </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Standort des Gebäudes:</label>
+                    <input type="text" id="location" name="location" class="form-control" required>
                 </div>
+                <button type="submit" class="btn btn-primary">Ort erstellen</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-            </div>
+<section id="ortHinzufügen" class="py-12">
+    <div class="p- text-gray-900 dark:text-gray-100">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Ort hinzufügen:
+                            </h2>
+            <form method="POST" action="{{ route('admin.venues.store') }}">
+                @csrf
+                <label for="date">Datum:</label>
+                <br>
+                
+                <input type="date" id="date" name="date" required>
+                <br>
+                <br>
+                <br>
+                <label for="venue">Veranstaltungsort:</label>
+                <br>
+                <select id="venue" name="venue_id" required>
+               
+                    @foreach($venues as $venue)
+                        <option value="{{ $venue->id }}">{{ $venue->name }}</option>
+                    @endforeach
+                </select>
+                <br>
+                <br>
+                <br>
+                <label for="categories">Kategorien:</label>
+               
+                <br>
+                
+                <select id="categories" name="categories[]" multiple required>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                <br>
+                <button type="submit" class="btn btn-primary">Spiele generieren</button>
+            </form>
+        </div>
+    </div>
+</section>
+
 
             <br>
 

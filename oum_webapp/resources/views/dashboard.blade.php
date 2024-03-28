@@ -9,17 +9,19 @@
         </div>
     </x-slot>
     
-   
     <div class="logo-container">
-        <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          
-            <circle class="letter" cx="50" cy="100" r="40"/>
-           
-            <rect class="letter" x="70" y="60" width="60" height="80" rx="15"/>
-            
-            <path class="letter" d="M140,60 L140,140 Q160,120 180,140 Q160,120 180,60"/>
-        </svg>
-    </div>
+    <svg class="logo" viewBox="0 0 230 190" xmlns="http://www.w3.org/2000/svg">
+        <circle class="letter" cx="50" cy="100" r="40"/>
+        <path class="letter u" d="M110,60 L110,140 Q130,120 150,140 Q130,120 150,60"/>
+        <path class="letter m" d="M170,130 L160,70 L180,90 L210,70 L220,155" rx="5" ry="5"/>
+
+
+
+    </svg>
+</div>
+
+<br>
+<br>
 
     
     <div class="subtitle-container">

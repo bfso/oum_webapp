@@ -12,18 +12,18 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="visited:text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-white visited:text-customColor8 dark:text-customColor4 hover:text-gray-300" >
                         {{ __('Home') }}
                     </x-nav-link>
                     @auth
-                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="visited:text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="text-white visited:text-customColor8 dark:text-customColor4 hover:text-gray-300" >
                         {{ __('Bearbeiten') }}
                     </x-nav-link>
                     @endauth
-                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="visited:text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="text-white visited:text-customColor8 dark:text-customColor4 hover:text-gray-300">
                         {{ __('Verband') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('gameoperation')" :active="request()->routeIs('gameoperation')" class="visited:text-customColor8 dark:text-customColor4">
+                    <x-nav-link :href="url('gameoperation')" :active="request()->routeIs('gameoperation')" class="text-white visited:text-customColor8 dark:text-customColor4 hover:text-gray-300">
                         {{ __('Spielbetrieb') }}
                     </x-nav-link>
 
@@ -99,7 +99,20 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @auth
+                    <x-responsive-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="visited:text-customColor8 dark:text-customColor4">
+                        {{ __('Bearbeiten') }}
+                    </x-responsive-nav-link>
+                    @endauth
+                    <x-responsive-nav-link :href="route('association')" :active="request()->routeIs('association')" class="visited:text-customColor8 dark:text-customColor4">
+                        {{ __('Verband') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="url('gameoperation')" :active="request()->routeIs('gameoperation')" class="visited:text-customColor8 dark:text-customColor4">
+                        {{ __('Spielbetrieb') }}
+                    </x-responsive-nav-link>
         </div>
+
+        
             
         @auth
             <!-- Responsive Settings Options -->
@@ -128,4 +141,10 @@
             </div>
         @endauth
     </div>
+
+    <style>
+     
+
+
+    </style>
 </nav>
