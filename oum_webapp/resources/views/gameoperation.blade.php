@@ -60,6 +60,34 @@
 
                                     </tbody>
                                 </table>
+                                <div class="mt-8">
+                                    <h2 class="text-lg font-semibold">Spiele für {{ ucfirst($league) }}</h2>
+                                    @if ($games->count() > 0)
+                                        <div class="overflow-x-auto">
+                                            <table class="w-full whitespace-nowrap rounded-lg overflow-hidden">
+                                                <thead>
+                                                    <tr class="bg-customColor5">
+                                                        <th class="px-4 py-2">Team 1</th>
+                                                        <th class="px-4 py-2">Team 2</th>
+                                                        <th class="px-4 py-2">Ergebnis</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($games as $game)
+                                                        <tr class="bg-gray-100">
+                                                            <td class="px-4 py-2"><center> {{ $game->team1->name }}</center></td>
+                                                            <td class="px-4 py-2"><center> {{ $game->team2->name }}</center></td>
+                                                            <td class="px-4 py-2"><center> {{ $game->team_1_score }} : {{ $game->team_2_score }}</center></td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @else
+                                        <p>Keine Spiele gefunden.</p>
+                                    @endif
+                                </div>
+
                             </div>
                         @else
                             <!-- Füge hier eine Nachricht ein, wenn keine Teams vorhanden sind -->

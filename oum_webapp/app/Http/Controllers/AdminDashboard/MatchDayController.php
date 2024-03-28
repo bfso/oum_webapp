@@ -8,6 +8,7 @@ use App\Models\Game;
 use App\Models\Team;
 use App\Models\Category;
 use App\Models\MatchDay;
+
 class MatchDayController extends Controller
 {
     public function generateMatches(Request $request)
@@ -39,11 +40,14 @@ class MatchDayController extends Controller
                 $halfCount = $teams->count() / 2;
                 $firstHalf = $teams->slice(0, $halfCount);
                 $secondHalf = $teams->slice($halfCount);
+                $firstHalfLength = count($firstHalf);
 
                 for ($i = 0; $i < count($firstHalf); $i++) {
                     $matches[] = [
                         'team1' => $firstHalf[$i],
-                        'team2' => $secondHalf[$i + 3]
+                        'team2' => $secondHalf[$i + $firstHalfLength],
+                        'category_id' => $category,
+                        // Kategorie-ID hinzufügen
                     ];
                 }
 
@@ -52,6 +56,8 @@ class MatchDayController extends Controller
                         'match_day_id' => $matchDay->id,
                         'team_1_id' => $match['team1']->id,
                         'team_2_id' => $match['team2']->id,
+                        'category_id' => $match['category_id'],
+                        // Kategorie-ID einfügen
                     ]);
                 }
 
@@ -63,7 +69,9 @@ class MatchDayController extends Controller
                 for ($i = 0; $i < count($firstHalf); $i++) {
                     $matches[] = [
                         'team1' => $firstHalf[$i],
-                        'team2' => $secondHalf[$i + 3]
+                        'team2' => $secondHalf[$i + $firstHalfLength],
+                        'category_id' => $category,
+                        // Kategorie-ID hinzufügen
                     ];
                 }
 
@@ -72,6 +80,8 @@ class MatchDayController extends Controller
                         'match_day_id' => $matchDay->id,
                         'team_1_id' => $match['team1']->id,
                         'team_2_id' => $match['team2']->id,
+                        'category_id' => $match['category_id'],
+                        // Kategorie-ID einfügen
                     ]);
                 }
 
@@ -86,4 +96,5 @@ class MatchDayController extends Controller
 
         return redirect()->back()->with('success', 'Spieltag erfolgreich erstellt.');
     }
+
 }
