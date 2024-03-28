@@ -13,4 +13,11 @@ class Game extends Model
 
     protected $fillable = ['match_day_id', 'team_1_id', 'team_2_id', 'team_1_score', 'team_2_score'];
 
+    public function showResults($category)
+    {
+        $games = Game::where('category_id', $category->id)->get();
+
+        return view('game_results', compact('games'));
+    }
+
 }
