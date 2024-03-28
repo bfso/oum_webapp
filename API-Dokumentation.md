@@ -51,12 +51,14 @@ Authentifiziert einen Benutzer und gibt ein Zugriffstoken zurück.
   POST /api/v1/login HTTP/1.1
   Host: example.com
   Content-Type: application/json
-
-  {
-    "email": "benutzer@example.com",
-    "password": "passwort123"
-  }
   ```
+
+```json
+{
+  "email": "benutzer@example.com",
+  "password": "passwort123"
+}
+```
 
 - **Beispielantwort:**
   ```json
@@ -566,4 +568,3 @@ Zeigt die Daten eines einzelnen Veranstaltungsorts an.
       "code": 404
     }
     ```
-
