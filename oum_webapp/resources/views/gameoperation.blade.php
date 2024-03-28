@@ -74,9 +74,9 @@
                                                 <tbody>
                                                     @foreach ($games as $game)
                                                         <tr class="bg-gray-100">
-                                                            <td class="px-4 py-2">{{ $game->team1->name }}</td>
-                                                            <td class="px-4 py-2">{{ $game->team2->name }}</td>
-                                                            <td class="px-4 py-2">{{ $game->team_1_score }} : {{ $game->team_2_score }}</td>
+                                                            <td class="px-4 py-2"><center> {{ $game->team1->name }}</center></td>
+                                                            <td class="px-4 py-2"><center> {{ $game->team2->name }}</center></td>
+                                                            <td class="px-4 py-2"><center> {{ $game->team_1_score }} : {{ $game->team_2_score }}</center></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
