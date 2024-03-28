@@ -15,9 +15,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                     <!-- Liste der Links für verschiedene Ligen -->
+                    
                     <div class="flex space-x-4 mb-4">
                         @foreach($categories as $category)
-                            <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-red-500 hover:text-red-700">{{ ucfirst($category) }}</a>
+                            <a href="{{ route('gameoperation', ['league' => $category]) }}" class="text-red-500 hover:text-red-700">{{ ucfirst($category) }}</a> 
                         @endforeach
                     </div>
                     
@@ -80,5 +81,7 @@
     border-bottom: 1px solid #ddd; 
     padding-bottom: 10px; 
 }
+
+
     </style>
 </x-app-layout>
