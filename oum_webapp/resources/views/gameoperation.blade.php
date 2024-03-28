@@ -76,7 +76,7 @@
                                                         <tr class="bg-gray-100">
                                                             <td class="px-4 py-2">{{ $game->team1->name }}</td>
                                                             <td class="px-4 py-2">{{ $game->team2->name }}</td>
-                                                            <td class="px-4 py-2">{{ $game->team1_score }} : {{ $game->team2_score }}</td>
+                                                            <td class="px-4 py-2">{{ $game->team_1_score }} : {{ $game->team_2_score }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

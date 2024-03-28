@@ -13,8 +13,16 @@ class GameOperationController extends Controller
     {
         $teams = $this->getDataForLeague($league);
         $categories = Category::pluck('name')->toArray();
-        $games = Game::where('category_id', $league)->get();
+       
+        $category = Category::where('name', $league)->first();
 
+        if ($category) {
+            // Spiele für die gefundenen Kategorie-ID abrufen
+            $games = Game::where('category_id', $category->id)->get();
+        } else {
+            // Falls die Kategorie nicht gefunden wurde, behandeln Sie den Fall entsprechend
+            $games = collect(); // leere Sammlung zurückgeben oder eine Fehlermeldung anzeigen
+        }
         // Bestimme den Rang für jedes Team basierend auf den Punkten und der Tordifferenz
         $rank = 1;
         $prevPoints = null;
