@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Team;
@@ -12,6 +13,7 @@ class GameOperationController extends Controller
     {
         $teams = $this->getDataForLeague($league);
         $categories = Category::pluck('name')->toArray();
+        $games = Game::where('category_id', $league)->get();
 
         // Bestimme den Rang für jedes Team basierend auf den Punkten und der Tordifferenz
         $rank = 1;
@@ -28,7 +30,7 @@ class GameOperationController extends Controller
             $prevGoalDifference = $team->goal_difference;
         }
 
-        return view('gameoperation', compact('league', 'teams', 'categories'));
+        return view('gameoperation', compact('league', 'teams', 'categories', 'games'));
     }
 
     private function getDataForLeague($league)
