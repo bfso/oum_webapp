@@ -101,7 +101,8 @@
             </x-responsive-nav-link>
             @auth
                     <x-responsive-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="visited:text-customColor8 dark:text-customColor4">
-                        {{ __('Admin Dashboard') }}
+                        {{ __('Admin Dashboardcgha
+                        ') }}
                     </x-responsive-nav-link>
                     @endauth
                     <x-responsive-nav-link :href="route('association')" :active="request()->routeIs('association')" class="visited:text-customColor8 dark:text-customColor4">
