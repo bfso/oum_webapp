@@ -18,7 +18,7 @@ class MatchDayController extends Controller
             'venue_id' => 'required|exists:venues,id',
             'categories' => 'required|array',
         ]);
-
+        
         $date = $request->input('date');
         $venueId = $request->input('venue_id');
         $categories = $request->input('categories');
@@ -47,7 +47,7 @@ class MatchDayController extends Controller
                         'team1' => $firstHalf[$i],
                         'team2' => $secondHalf[$i + $firstHalfLength],
                         'category_id' => $category,
-                        // Kategorie-ID hinzufügen
+                        
                     ];
                 }
 
@@ -57,7 +57,7 @@ class MatchDayController extends Controller
                         'team_1_id' => $match['team1']->id,
                         'team_2_id' => $match['team2']->id,
                         'category_id' => $match['category_id'],
-                        // Kategorie-ID einfügen
+                        
                     ]);
                 }
 
@@ -81,7 +81,7 @@ class MatchDayController extends Controller
                         'team_1_id' => $match['team1']->id,
                         'team_2_id' => $match['team2']->id,
                         'category_id' => $match['category_id'],
-                        // Kategorie-ID einfügen
+                        
                     ]);
                 }
 
