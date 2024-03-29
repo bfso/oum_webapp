@@ -17,7 +17,7 @@
                     </x-nav-link>
                     @auth
                     <x-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="text-white visited:text-customColor8 dark:text-customColor4 hover:text-gray-300" >
-                        {{ __('Bearbeiten') }}
+                        {{ __('Admin Dashboard') }}
                     </x-nav-link>
                     @endauth
                     <x-nav-link :href="route('association')" :active="request()->routeIs('association')" class="text-white visited:text-customColor8 dark:text-customColor4 hover:text-gray-300">
@@ -101,7 +101,7 @@
             </x-responsive-nav-link>
             @auth
                     <x-responsive-nav-link :href="route('edit')" :active="request()->routeIs('edit')" class="visited:text-customColor8 dark:text-customColor4">
-                        {{ __('Bearbeiten') }}
+                        {{ __('Admin Dashboard') }}
                     </x-responsive-nav-link>
                     @endauth
                     <x-responsive-nav-link :href="route('association')" :active="request()->routeIs('association')" class="visited:text-customColor8 dark:text-customColor4">
